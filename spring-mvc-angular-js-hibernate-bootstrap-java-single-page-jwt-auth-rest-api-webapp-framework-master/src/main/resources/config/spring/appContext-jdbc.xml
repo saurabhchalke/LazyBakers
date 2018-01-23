@@ -11,7 +11,7 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost/test"/>
         <property name="user" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value=""/>
         <property name="preferredTestQuery" value="SELECT 1"/>
 
         <property name="minPoolSize" value="5" />

@@ -11,9 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * @author: kameshr
- */
 public class StatelessAuthenticationFilter extends GenericFilterBean {
     private TokenAuthenticationService authenticationService;
 

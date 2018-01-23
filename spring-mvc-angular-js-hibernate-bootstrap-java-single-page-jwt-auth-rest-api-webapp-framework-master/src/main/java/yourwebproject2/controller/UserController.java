@@ -8,7 +8,6 @@ import yourwebproject2.framework.api.APIResponse;
 import yourwebproject2.framework.controller.BaseController;
 import yourwebproject2.model.dto.UserDTO;
 import yourwebproject2.model.entity.User;
-import yourwebproject2.service.MailJobService;
 import yourwebproject2.service.UserService;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
@@ -47,7 +46,7 @@ public class UserController extends BaseController {
     private static Logger LOG = LoggerFactory.getLogger(UserController.class);
 
     private @Autowired UserService userService;
-    private @Autowired MailJobService mailJobService;
+    //private @Autowired MailJobService mailJobService;
 
     /**
      * Authenticate a user

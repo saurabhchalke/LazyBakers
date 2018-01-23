@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 /**
  * Category Entity
  *
- * Created by Y.Kamesh on 8/2/2015.
  */
 @Entity
 @Table(indexes = {  @Index(name="name_idx", columnList = "name", unique = true),

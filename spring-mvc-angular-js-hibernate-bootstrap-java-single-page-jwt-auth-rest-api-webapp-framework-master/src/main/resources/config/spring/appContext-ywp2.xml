@@ -33,8 +33,5 @@
     <tx:annotation-driven/>
     <mvc:annotation-driven/>
 
-    <mvc:interceptors>
-        <ref bean="webAppMetricsInterceptor"/>
-    </mvc:interceptors>
 
 </beans>

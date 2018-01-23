@@ -14,9 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-/**
- * Created by Y.Kamesh on 8/2/2015.
- */
 @Service
 @Transactional
 public class CategoryServiceImpl extends BaseJPAServiceImpl<Category, Long> implements CategoryService {

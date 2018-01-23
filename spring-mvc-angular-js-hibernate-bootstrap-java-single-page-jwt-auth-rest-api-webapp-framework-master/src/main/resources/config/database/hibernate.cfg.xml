@@ -24,7 +24,6 @@
 
         <!-- Map the app related object entity classes here -->
         <mapping class="yourwebproject2.model.entity.User" />
-        <mapping class="yourwebproject2.model.entity.Job" />
         <mapping class="yourwebproject2.model.entity.Category" />
     </session-factory>
 </hibernate-configuration> 

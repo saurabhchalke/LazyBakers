@@ -17,7 +17,6 @@ import java.util.Date;
  * Service impl class to implement services for accessing the User object entity.
  * This class acts as an interface between the outer world and the UserRepository
  *
- * @author: kameshr
  */
 @Service
 @Transactional
@@ -76,7 +75,7 @@ public class UserServiceImpl extends BaseJPAServiceImpl<User, Long> implements U
         if(user != null) {
             return user;
         } else {
-            throw new EmailNotFoundException("User not found for email: "+email);
+            throw new EmailNotFoundException("User not found for email: " + email);
         }
     }
 }

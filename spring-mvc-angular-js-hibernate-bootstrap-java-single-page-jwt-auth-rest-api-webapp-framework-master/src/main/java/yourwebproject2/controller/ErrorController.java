@@ -16,9 +16,6 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author: kameshr
- */
 @Controller
 public class ErrorController extends BaseController {
     private static Logger LOG = LoggerFactory.getLogger(ErrorController.class);

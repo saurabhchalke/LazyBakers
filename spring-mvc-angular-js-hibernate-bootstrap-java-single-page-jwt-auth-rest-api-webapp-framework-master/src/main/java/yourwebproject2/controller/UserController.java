@@ -36,8 +36,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * @author: kameshr
- *
  * Referred: https://github.com/mpetersen/aes-example, http://niels.nu/blog/2015/json-web-tokens.html
  */
 @Controller
@@ -46,7 +44,6 @@ public class UserController extends BaseController {
     private static Logger LOG = LoggerFactory.getLogger(UserController.class);
 
     private @Autowired UserService userService;
-    //private @Autowired MailJobService mailJobService;
 
     /**
      * Authenticate a user

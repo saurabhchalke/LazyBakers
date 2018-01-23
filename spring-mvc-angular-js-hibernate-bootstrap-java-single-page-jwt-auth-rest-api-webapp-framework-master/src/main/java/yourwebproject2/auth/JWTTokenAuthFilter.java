@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * @author: kameshr
- */
 public class JWTTokenAuthFilter extends OncePerRequestFilter {
     private static List<Pattern> AUTH_ROUTES = new ArrayList<>();
     private static List<String> NO_AUTH_ROUTES = new ArrayList<>();
@@ -82,7 +79,7 @@ public class JWTTokenAuthFilter extends OncePerRequestFilter {
                 throw new AuthCredentialsMissingException("Missing or invalid Authorization header.");
             }
 
-            final String token = authHeader.substring(7); // The part after "Bearer "
+            final String token = authHeader.substring(7); // The part after "Bearer"
             try {
                 final Claims claims = Jwts.parser().setSigningKey(JWT_KEY)
                         .parseClaimsJws(token).getBody();

@@ -1,10 +1,8 @@
 package yourwebproject2.model.dto;
 
-/**
+/*
+ *{"name":"cat1", "priority":2, "parent":"pCat"}
  *
- * {"name":"cat1", "priority":2, "parent":"pCat"}
- *
- * @author: kameshr
  */
 public class CategoryDTO {
     String name;

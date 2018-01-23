@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Category creation and get APIs
  *
- * Created by Y.Kamesh on 8/2/2015.
  */
 @Controller
 @RequestMapping("category")
@@ -44,7 +43,7 @@ public class CategoryController extends BaseController {
         }
 
         if(categoryService.isCategoryPresent(categoryDTO.getName())) {
-            LOG.info("Category taken: "+categoryDTO.getName());
+            LOG.info("Category taken: " + categoryDTO.getName());
             return APIResponse.toErrorResponse("Category taken");
         }
 

@@ -11,10 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-
-/**
- * Created by Y.Kamesh on 10/9/2015.
- */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(indexes = {  @Index(name="email_idx", columnList = "email", unique = true),

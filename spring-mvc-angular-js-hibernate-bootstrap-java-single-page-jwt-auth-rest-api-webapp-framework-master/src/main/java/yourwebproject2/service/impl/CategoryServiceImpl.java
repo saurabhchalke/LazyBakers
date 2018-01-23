@@ -1,7 +1,6 @@
 package yourwebproject2.service.impl;
 
 import yourwebproject2.framework.data.BaseJPAServiceImpl;
-import yourwebproject2.framework.exception.NotFoundException;
 import yourwebproject2.model.entity.Category;
 import yourwebproject2.model.repository.CategoryRepository;
 import yourwebproject2.service.CategoryService;
@@ -49,22 +48,31 @@ public class CategoryServiceImpl extends BaseJPAServiceImpl<Category, Long> impl
     }
 
     @Override
-    public Category findByCategoryName(String categoryName) throws NotFoundException {
+    public Category findByCategoryName(String categoryName) {
         Category c = categoryRepository.findByCategoryName(categoryName);
 
         if(c==null) {
-            throw new NotFoundException("Category: "+categoryName + " not found");
+            try {
+				throw new Exception("Category: "+categoryName + " not found");
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
         }
 
         return c;
     }
 
     @Override
-    public List<Category> findSubCategories(Category parentCategory) throws NotFoundException {
+    public List<Category> findSubCategories(Category parentCategory) {
         List<Category> categories = categoryRepository.findSubCategories(parentCategory);
 
         if(categories==null || categories.size()==0) {
-            throw new NotFoundException("Subcategories for category: "+parentCategory.getName()+ " not found");
+            try {
+				throw new Exception("Subcategories for category: "+parentCategory.getName()+ " not found");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
 
         return categories;

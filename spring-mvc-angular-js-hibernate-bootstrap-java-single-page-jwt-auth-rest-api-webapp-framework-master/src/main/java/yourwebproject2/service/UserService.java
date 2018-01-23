@@ -1,7 +1,6 @@
 package yourwebproject2.service;
 
 import yourwebproject2.framework.data.BaseService;
-import yourwebproject2.framework.exception.EmailNotFoundException;
 import yourwebproject2.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
  *
  * Service class to have business logic operation on User entity
  *
- * @author: kameshr
  */
 public interface UserService extends BaseService<User, Long> {
 
@@ -65,5 +63,5 @@ public interface UserService extends BaseService<User, Long> {
      * @param email
      * @return
      */
-    public User findByEmail(String email) throws EmailNotFoundException;
+    public User findByEmail(String email);
 }

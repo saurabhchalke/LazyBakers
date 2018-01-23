@@ -1,7 +1,6 @@
 package yourwebproject2.service.impl;
 
 import yourwebproject2.framework.data.BaseJPAServiceImpl;
-import yourwebproject2.framework.exception.EmailNotFoundException;
 import yourwebproject2.model.entity.User;
 import yourwebproject2.model.repository.UserRepository;
 import yourwebproject2.service.UserService;
@@ -69,13 +68,17 @@ public class UserServiceImpl extends BaseJPAServiceImpl<User, Long> implements U
 
 
     @Override
-    public User findByEmail(String email) throws EmailNotFoundException {
+    public User findByEmail(String email){
         User user = userRepository.findByEmail(email);
 
         if(user != null) {
             return user;
         } else {
-            throw new EmailNotFoundException("User not found for email: " + email);
+            try {
+				throw new Exception("User not found for email: " + email);
+			} catch (Exception e) {
+				return null;
+			}
         }
     }
 }

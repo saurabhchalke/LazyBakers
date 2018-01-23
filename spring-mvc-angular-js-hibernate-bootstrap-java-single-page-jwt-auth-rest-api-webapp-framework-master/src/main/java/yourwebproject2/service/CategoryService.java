@@ -1,15 +1,12 @@
 package yourwebproject2.service;
 
 import yourwebproject2.framework.data.BaseService;
-import yourwebproject2.framework.exception.NotFoundException;
 import yourwebproject2.model.entity.Category;
 
 import java.util.List;
 
 /**
  * Brings in the basic CRUD service ops from BaseService. Insert additional ops here.
- *
- * Created by Y.Kamesh on 8/2/2015.
  */
 public interface CategoryService extends BaseService<Category, Long> {
     /**
@@ -38,7 +35,7 @@ public interface CategoryService extends BaseService<Category, Long> {
      * @param categoryName
      * @return
      */
-    public Category findByCategoryName(String categoryName) throws NotFoundException;
+    public Category findByCategoryName(String categoryName);
 
     /**
      * Find sub categories by parent category
@@ -46,5 +43,5 @@ public interface CategoryService extends BaseService<Category, Long> {
      * @param parentCategory
      * @return
      */
-    public List<Category> findSubCategories(Category parentCategory) throws NotFoundException;
+    public List<Category> findSubCategories(Category parentCategory);
 }

@@ -8,18 +8,19 @@ angular.module('App.Auth')
                 BackendCfg.setupHttp($http);
                 // this.createCredentials(email, password);
                 var user = {};
-                var aesPack = this.encryptPassword(password);
-                user.password = '';
-                user.vpassword = '';
-                user.iv = aesPack.iv;
-                user.salt = aesPack.salt;
-                user.keySize = aesPack.keySize;
-                user.iterations = aesPack.iterations;
-                user.encryptedPassword = aesPack.ciphertext;
+//                var aesPack = this.encryptPassword(password);
+//                user.password = '';
+                user.password = password;
+//                user.vpassword = '';
+//                user.iv = aesPack.iv;
+//                user.salt = aesPack.salt;
+//                user.keySize = aesPack.keySize;
+//                user.iterations = aesPack.iterations;
+//                user.encryptedPassword = aesPack.ciphertext;
                 user.email = email;
-                console.log('encryptedPassword: '+user.encryptedPassword);
-                console.log('pass: '+user.password);
-                console.log('email: '+user.email);
+//                console.log('encryptedPassword: '+user.encryptedPassword);
+                console.log('pass: '+ user.password);
+                console.log('email: '+ user.email);
                 $http.post(BackendCfg.url+'/api/user/authenticate', user )
                     .success(function (response) {
                         callback(response);
@@ -31,26 +32,27 @@ angular.module('App.Auth')
                 BackendCfg.setupHttp($http);
                 // this.createCredentials(user.email, user.password);
 
-                var aesPack = this.encryptPassword(user.password);
-                user.password = '';
-                user.vpassword = '';
-                user.iv = aesPack.iv;
-                user.salt = aesPack.salt;
-                user.keySize = aesPack.keySize;
-                user.iterations = aesPack.iterations;
-                user.encryptedPassword = aesPack.ciphertext;
-
-                console.log('encryptedPassword: '+user.encryptedPassword);
+//                var aesPack = this.encryptPassword(user.password);
+//                user.password = '';
+                user.password =  user.password;
+//              user.vpassword = '';
+//                user.iv = aesPack.iv;
+//                user.salt = aesPack.salt;
+//                user.keySize = aesPack.keySize;
+//                user.iterations = aesPack.iterations;
+//                user.encryptedPassword = aesPack.ciphertext;
+                
+//                console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
                 console.log('displayName: '+user.displayName);
-
-                $http.post(BackendCfg.url+'/api/user/register', user )
+                
+                	(BackendCfg.url + '/api/user/register', user )
                     .success(function (response) {
                         callback(response);
                     });
             };
-
+            
             service.encryptPassword = function (password) {
                 var aesPack = {};
                 var iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);

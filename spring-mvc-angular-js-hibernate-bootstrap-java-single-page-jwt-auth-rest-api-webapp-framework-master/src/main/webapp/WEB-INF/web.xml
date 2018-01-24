@@ -12,6 +12,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:config/spring/appContext-jdbc.xml,
+            classpath:config/spring/appContext-interceptor.xml,
             classpath:config/spring/appContext-repository.xml,
             classpath:config/spring/appContext-service.xml,
             classpath:config/spring/appContext-auth.xml,

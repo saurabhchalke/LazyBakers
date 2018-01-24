@@ -4,11 +4,11 @@ public class UserDTO {
     String email;
     String password;
     String displayName;
-    String encryptedPassword;
-    String iv;
-    String salt;
-    int keySize;
-    int iterations;
+//    String encryptedPassword;
+//    String iv;
+//    String salt;
+//    int keySize;
+//    int iterations;
 
     public String getEmail() {
         return email;
@@ -33,7 +33,7 @@ public class UserDTO {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
-
+/*
     public String getEncryptedPassword() {
         return encryptedPassword;
     }
@@ -72,5 +72,5 @@ public class UserDTO {
 
     public void setIterations(int iterations) {
         this.iterations = iterations;
-    }
+    }*/
 }

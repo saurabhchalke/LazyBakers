@@ -132,6 +132,8 @@ public class User extends JPAEntity<Long> implements Serializable {
      *
      * @return SHA hash digest of the password
      */
+    
+    
     public static synchronized String hashPassword(String pass) {
         return passwordEncoder.encode(pass);
     }

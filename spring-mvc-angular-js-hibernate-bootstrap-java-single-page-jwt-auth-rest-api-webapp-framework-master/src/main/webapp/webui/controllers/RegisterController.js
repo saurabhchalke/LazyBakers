@@ -1,6 +1,3 @@
-/**
- * Created by Y.Kamesh on 4/12/2015.
- */
 angular.module('App.Auth')
     .controller('RegisterController', RegisterController);
 
@@ -9,7 +6,7 @@ function RegisterController($location, $scope, $rootScope, AuthService, FlashMes
     var rc = this;
     console.log('register controller');
     rc.register = function (admin) {
-        console.log('received the register event for user: '+rc.user.username);
+        console.log('received the register event for user: ' + rc.user.username);
         $rootScope.isSubmitted = true;
         rc.dataLoading = true;
         rc.user.admin = admin;

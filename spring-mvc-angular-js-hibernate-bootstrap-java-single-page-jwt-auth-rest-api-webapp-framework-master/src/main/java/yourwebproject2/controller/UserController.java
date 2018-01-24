@@ -55,9 +55,10 @@ public class UserController extends BaseController {
     public @ResponseBody APIResponse authenticate(@RequestBody UserDTO userDTO,
                                                   HttpServletRequest request, HttpServletResponse response) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, AuthenticationFailedException {
         Validate.isTrue(StringUtils.isNotBlank(userDTO.getEmail()), "Email is blank");
-        Validate.isTrue(StringUtils.isNotBlank(userDTO.getEncryptedPassword()), "Encrypted password is blank");
-        String password = decryptPassword(userDTO);
-
+//        Validate.isTrue(StringUtils.isNotBlank(userDTO.getEncryptedPassword()), "Encrypted password is blank");
+//        String password = decryptPassword(userDTO);
+        String password = userDTO.getPassword();
+        
         LOG.info("Looking for user by email: "+userDTO.getEmail());
         User user = userService.findByEmail(userDTO.getEmail());
 
@@ -84,16 +85,17 @@ public class UserController extends BaseController {
     public @ResponseBody APIResponse register(@RequestBody UserDTO userDTO,
                                               HttpServletRequest request) throws NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, InvalidKeySpecException {
         Validate.isTrue(StringUtils.isNotBlank(userDTO.getEmail()), "Email is blank");
-        Validate.isTrue(StringUtils.isNotBlank(userDTO.getEncryptedPassword()), "Encrypted password is blank");
+//        Validate.isTrue(StringUtils.isNotBlank(userDTO.getEncryptedPassword()), "Encrypted password is blank");
         Validate.isTrue(StringUtils.isNotBlank(userDTO.getDisplayName()), "Display name is blank");
-        String password = decryptPassword(userDTO);
-
-        LOG.info("Looking for user by email: "+userDTO.getEmail());
+//        String password = decryptPassword(userDTO);
+        String password = userDTO.getPassword();
+        
+        LOG.info("Looking for user by email: " + userDTO.getEmail());
         if(userService.isEmailExists(userDTO.getEmail())) {
             return APIResponse.toErrorResponse("Email is taken");
         }
 
-        LOG.info("Creating user: "+userDTO.getEmail());
+        LOG.info("Creating user: " + userDTO.getEmail());
         User user = new User();
         user.setEmail(userDTO.getEmail());
         user.setDisplayName(userDTO.getDisplayName());
@@ -103,7 +105,7 @@ public class UserController extends BaseController {
         userService.registerUser(user, request);
 
         HashMap<String, Object> authResp = new HashMap<>();
-        createAuthResponse(user, authResp);
+//        createAuthResponse(user, authResp);
 
         return APIResponse.toOkResponse(authResp);
     }
@@ -127,7 +129,7 @@ public class UserController extends BaseController {
         return APIResponse.toOkResponse("success");
     }
 
-    private String decryptPassword(UserDTO userDTO) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
+    /*private String decryptPassword(UserDTO userDTO) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
         String passPhrase = "biZndDtCMkdeP8K0V15OKMKnSi85";
         String salt = userDTO.getSalt();
         String iv = userDTO.getIv();
@@ -144,7 +146,7 @@ public class UserController extends BaseController {
 
         return new String(decrypted, "UTF-8");
     }
-
+*/
     private String base64(byte[] bytes) {
         return Base64.encodeBase64String(bytes);
     }

@@ -12,8 +12,6 @@ import java.util.Collection;
 
 /**
  * Generic CRUD Repository class functionality with Hibernate Session Factory
- *
- * Created by Y.Kamesh on 8/2/2015.
  */
 public abstract class BaseHibernateJPARepository<T extends Entity, ID extends Serializable> implements BaseJPARepository<T, ID> {
     protected @Autowired

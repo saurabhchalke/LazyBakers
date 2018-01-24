@@ -2,3 +2,5 @@
 /Spring-AngularJS-Java-WebApp-Template-Project.iml
 .idea
 target
+hibernate.cfg.xml
+appContext-jdbc.xml

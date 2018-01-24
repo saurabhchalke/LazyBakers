@@ -1,8 +1,5 @@
 package yourwebproject2.model.dto;
 
-/**
- * @author: kameshr
- */
 public class UserDTO {
     String email;
     String password;

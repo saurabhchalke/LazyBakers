@@ -1,6 +1,4 @@
-/**
- * Created by Y.Kamesh on 4/12/2015.
- */
+
 angular.module('App.Auth')
     .controller('LoginController', ['$scope', '$rootScope', '$location', 'AuthService', LoginController]);
 

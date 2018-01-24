@@ -1,7 +1,3 @@
-/**
- * Created by Y.Kamesh on 4/12/2015.
- * Referred: https://github.com/mpetersen/aes-example
- */
 
 'use strict';
 angular.module('App.Auth')
@@ -108,7 +104,6 @@ angular.module('App.Auth')
             return service;
         }])
     .factory('Base64', function () {
-        /* jshint ignore:start */
 
         var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 

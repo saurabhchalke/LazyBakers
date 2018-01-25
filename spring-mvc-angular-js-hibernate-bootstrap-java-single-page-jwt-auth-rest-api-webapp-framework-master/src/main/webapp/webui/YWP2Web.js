@@ -1,6 +1,3 @@
-/**
- * Created by Y.Kamesh on 4/6/2015.
- */
 var ywp2WebModule = angular.module('YWP2Web',
                                     [
                                         'ngAnimate',
@@ -20,6 +17,10 @@ ywp2WebModule.config(['$routeProvider',
                 controller: 'HomeController',
                 templateUrl: 'webui/views/home.html',
                 controllerAs: 'home'
+//            	
+//            	controller: 'HomeController',
+//            	templateUrl: 'webui/views/index.html',
+//            	controllerAs: 'home'
             })
 
             .when('/admin.login', {

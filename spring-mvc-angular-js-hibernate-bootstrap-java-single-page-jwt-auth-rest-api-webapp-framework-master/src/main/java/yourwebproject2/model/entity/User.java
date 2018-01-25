@@ -11,6 +11,10 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
+
+/**
+ * Created by Y.Kamesh on 10/9/2015.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(indexes = {  @Index(name="email_idx", columnList = "email", unique = true),
@@ -132,8 +136,6 @@ public class User extends JPAEntity<Long> implements Serializable {
      *
      * @return SHA hash digest of the password
      */
-    
-    
     public static synchronized String hashPassword(String pass) {
         return passwordEncoder.encode(pass);
     }

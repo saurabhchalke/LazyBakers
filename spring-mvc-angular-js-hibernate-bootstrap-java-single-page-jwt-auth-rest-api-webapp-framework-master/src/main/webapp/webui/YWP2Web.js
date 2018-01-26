@@ -14,13 +14,13 @@ ywp2WebModule.config(['$routeProvider',
     function ($routeProvider){
         $routeProvider
             .when('/home', {
-                controller: 'HomeController',
-                templateUrl: 'webui/views/home.html',
-                controllerAs: 'home'
+//                controller: 'HomeController',
+//                templateUrl: 'webui/views/home.html',
+//                controllerAs: 'home'
 //            	
-//            	controller: 'HomeController',
-//            	templateUrl: 'webui/views/index.html',
-//            	controllerAs: 'home'
+            	controller: 'HomeController',
+            	templateUrl: 'webui/views/index.html',
+            	controllerAs: 'home'
             })
 
             .when('/admin.login', {
@@ -36,9 +36,21 @@ ywp2WebModule.config(['$routeProvider',
             })
 
             .when('/register', {
-                controller: 'RegisterController',
-                templateUrl: 'webui/views/register.html',
-                controllerAs: 'rc'
+//                controller: 'RegisterController',
+//                templateUrl: 'webui/views/register.html',
+//                controllerAs: 'rc'
+                	
+                    controller: 'RegisterController',
+                    templateUrl: 'webui/views/register1.html',
+                    controllerAs: 'rc'
+            	
+
+            })
+            
+            .when('/menu', {
+                controller: 'MenuController',
+                templateUrl: 'webui/views/menus.html',
+                controllerAs: 'mc'
             })
 
             .when('/access-denied', {
@@ -77,7 +89,7 @@ ywp2WebModule.run(['$rootScope', '$location', '$cookieStore', '$http',
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             console.log('received event: ' + event + ' from: ' + current + ' to go to next: ' + next);
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/menu','/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             $rootScope.currentUser = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {

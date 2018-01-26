@@ -1,7 +1,8 @@
-<script src="login.js"></script>
-
+<html>
     <head>
-	<link rel="stylesheet" type="text/css" href="login.css">
+    
+    <script src="res/js/staticjs/login.js"></script>
+	<link rel="stylesheet" type="text/css" href="res/css/staticcss/login.css">
 
         <meta charset="UTF-8" />
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
@@ -14,66 +15,43 @@
         <div class="container">
            
             <header>
-                <h1>Login and Registration Form</h1>
+                <h1>Login Form</h1>
 				
             </header>
             <section>				
                 <div id="container_demo" >
-                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
-                    <a class="hiddenanchor" id="toregister"></a>
-                    <a class="hiddenanchor" id="tologin"></a>
+                    
                     <div id="wrapper">
-                        <div id="login" class="animate form">
-                            <form  action="file:///C:/Users/vijay/Desktop/MeatKing-master/index.html" autocomplete="on"> 
-                                <h1>Log in</h1> 
-                                <p> 
+                        <div id="login" class="animate form" ng-controller="LoginController as lc">
+                        	<div ng-show="lc.error" class="alert alert-danger">{{lc.error}}</div>
+                            <form ng-submit="lc.login()" autocomplete="on"  name = "form" role="form"> 
+                                <h1>Log In</h1> 
+                                <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && (form.email.$error.required || form.email.$error.email) }"> 
                                     <label for="username" class="uname" > Your email </label>
-                                    <input id="username" name="username" required="required" type="text" placeholder="mymail@mail.com"/>
-                                </p>
-                                <p> 
+                                    <input id="email" name="email" required="required" type="email" placeholder="mymail@mail.com" ng-model="lc.user.email" required />
+                                    <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                					<span ng-show="form.email.$dirty && form.email.$error.email" class="help-block">Email is invalid</span>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }"> 
                                     <label for="password" class="youpasswd"> Your password </label>
-                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" onkeydown = "if (event.keyCode == 13) document.getElementById('loginButton').click()"/> 
-                                </p>
-                                <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">Keep me logged in</label>
-								</p>
-                                   <a href="file:///C:/Users/vijay/Desktop/MeatKing-master/index.html" class="login button" target="_blank"><button id="loginButton">Login</button></a>
+                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" onkeydown = "if (event.keyCode == 13) document.getElementById('loginButton').click()" ng-model="lc.user.password" />
+                                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span> 
+                                </div>
+                                <button id="loginButton" type="submit" ng-disabled="form.$invalid || dataLoading" class="login button">Login</button>
+                                
 								   <br>
 								   <br>
                                 <p class="change_link">
 									Not a member yet ?
-									<a href="#toregister" class="to_register">Join us</a>
+									<a href="#/register" class="to_register">Join us</a>
 								</p>
                             </form>
                         </div>
 
-                        <div id="register" class="animate form">
-                            <form  action="mysuperscript.php" autocomplete="on"> 
-                                <h1> Sign up </h1> 
-                                <p> 
-                                    <label for="usernamesignup" class="uname" >Name</label>
-                                    <input id="fnamesignup" name="fnamesignup" required="required" type="text" placeholder="First Name" width="5%"/>
-									<input id="lnamesignup" name="lnamesignup" required="required" type="text" placeholder="Last Name" />	
-                                </p>
-                                <p> 
-                                    <label for="emailsignup" class="youmail"  > Your email</label>
-                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
-                                </p>
-                                <p> 
-                                    <label for="passwordsignup" class="youpasswd" >Your password </label>
-                                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                                </p>
-                                <p> 
-                                    <label for="passwordsignup_confirm" class="youpasswd" >Please confirm your password </label>
-                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                                </p>
-                                <p class="signin button"> 
-									<input type="submit" value="Sign up"/> 
-								</p>
-                                <p class="change_link">  
-									Already a member ?
-									<a href="#tologin" class="to_register"> Go and log in </a>
-								</p>
-                            </form>
-                        </div>
+                        
+                   </div>
+                   </div>
+                   </section>
+                   </div>
+                   </body>
+</html>             

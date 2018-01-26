@@ -4,9 +4,11 @@ angular.module('App.Auth')
     .service('AuthService', ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout', 'BackendCfg',
         function (Base64, $http, $cookieStore, $rootScope, $timeout, BackendCfg) {
             var service = this;
+            
+            //login function
             service.login = function (email, password, callback) {
                 BackendCfg.setupHttp($http);
-                // this.createCredentials(email, password);
+                this.createCredentials(email, password);
                 var user = {};
 //                var aesPack = this.encryptPassword(password);
 //                user.password = '';
@@ -30,11 +32,11 @@ angular.module('App.Auth')
 
             service.register = function (user, callback) {
                 BackendCfg.setupHttp($http);
-                // this.createCredentials(user.email, user.password);
+                 this.createCredentials(user.email, user.password);
 
 //                var aesPack = this.encryptPassword(user.password);
 //                user.password = '';
-                user.password =  user.password;
+//                user.password =  user.password;
 //              user.vpassword = '';
 //                user.iv = aesPack.iv;
 //                user.salt = aesPack.salt;
@@ -43,11 +45,11 @@ angular.module('App.Auth')
 //                user.encryptedPassword = aesPack.ciphertext;
                 
 //                console.log('encryptedPassword: '+user.encryptedPassword);
-                console.log('pass: '+user.password);
+                console.log(user);
                 console.log('email: '+user.email);
-                console.log('displayName: '+user.displayName);
+//                console.log('displayName: '+user.displayName);
                 
-                	(BackendCfg.url + '/api/user/register', user )
+                $http.post(BackendCfg.url + '/api/user/register', user )
                     .success(function (response) {
                         callback(response);
                     });
@@ -69,13 +71,14 @@ angular.module('App.Auth')
                 aesPack.ciphertext = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
                 return aesPack;
             };
-
+            
+            //Create Credentials
             service.createCredentials = function (email, password) {
                 var authdata = Base64.encode(email + ':' + password);
 
                 $rootScope.globals = {
                     currentUser: {
-                        email: email,
+                        email: email ,
                         authdata: authdata
                     }
                 };

@@ -6,7 +6,8 @@ function RegisterController($location, $scope, $rootScope, AuthService, FlashMes
     var rc = this;
     console.log('register controller');
     rc.register = function (admin) {
-        console.log('received the register event for user: ' + rc.user.username);
+        console.log('received the register event for user: ' + rc.user.email);
+//    	console.log('received the register event for user: ');
         $rootScope.isSubmitted = true;
         rc.dataLoading = true;
         rc.user.admin = admin;

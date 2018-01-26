@@ -168,9 +168,6 @@ background-size:cover;
 	 font-family: 'Raleway', sans-serif;
 }
 
-a.hiddenanchor{
-	display: none;
-}
 /** The wrapper that will contain our two forms **/
 #wrapper{
 	width: 60%;
@@ -447,7 +444,6 @@ p.change_link{
 }
 #register{	
 	z-index: 21;
-	opacity: 0;
 }
 #login{
 	z-index: 22;

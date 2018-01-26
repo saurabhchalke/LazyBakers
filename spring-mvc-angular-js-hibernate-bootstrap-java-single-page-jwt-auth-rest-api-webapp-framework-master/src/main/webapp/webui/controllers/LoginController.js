@@ -1,4 +1,3 @@
-
 angular.module('App.Auth')
     .controller('LoginController', ['$scope', '$rootScope', '$location', 'AuthService', LoginController]);
 
@@ -14,8 +13,8 @@ function LoginController($scope, $rootScope, $location, AuthService) {
         console.log('received the login event for user: ' + lc.user.email);
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
-        AuthService.login(lc.user.email, lc.user.password, function (response) {
-            if (response.code == 200) {
+        AuthService.login(lc.user.email, lc.user.password, function(response) {
+            if(response.code == 200) {
                 AuthService.createJWTToken(response.result.user, response.result.token);
                 AuthService.setCredentials();
                 

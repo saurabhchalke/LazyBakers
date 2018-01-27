@@ -1,0 +1,13 @@
+Json object:
+{
+items: [{id: "item1", name: "My Item #1", price: 10.99, quantity: 1, data: undefined, total: 10.99}
+		, {id: "item2", name: "My Item #2", price: 15.29, quantity: 1, data: undefined, total:15.29}
+		, {id: "item3", name: "My Item #3", price: 25.75, quantity: 3, data: undefined, total:15.29}
+		]
+length:3,
+shipping:2.99,
+subTotal:103.53,
+tax:7.76,
+taxRate:7.5,
+totalCost:114.28
+}

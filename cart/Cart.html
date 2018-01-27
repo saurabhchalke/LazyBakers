@@ -9,17 +9,34 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
   <script type="text/javascript" src="dummy.js"></script>
+  
+
   <link rel="stylesheet" type="text/css" href="normalize.css">
   <link rel="stylesheet" type="text/css" href="result-light.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="toppings.css">
+  
+
+
+
+
+
+
+
+
+
+
+
+
   <script type="text/javascript" src="ngCart.js"></script>
   <style type="text/css">
-	/*hr {
-		margin:40px 0;
-	} */
+	
 	h3 { color:#1758AA}
 	h3 span {font-size:14px; display:block;}
 	span[ng-click] {
@@ -42,14 +59,12 @@
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Our standard Pizzas</a>
         </h4>
       </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        
-		<div class="panel-body">
+<div id="collapse1" class="panel-collapse collapse in">
+ 	<div class="panel-body">
 		
 		
-		
-		 <h3>Add to Cart</h3>
-<div class="row">
+<h3>Add to Cart</h3>
+	<div id="standard_pizzas" class="row">
     <div class="col-xs-6 col-sm-3">
         <h4>My Item #1</h4>
 		<p> This is the best as per your aukaat </P>
@@ -90,11 +105,21 @@
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
 		
-		<div class="toppingsContainer">
+		<div class="toppingsContainer" ng-controller = "CartController">
 			<p> <h3>Toppings</h3> </p>
 			<h5 style="color: green;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg<span> <img src="veg.jpg" height="15px" width="15px"></span>: </h5>
+
+				
+			<span ng-repeat="topping in toppings | filter : {vegetarian: true}">
+				
+				<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+				<label for="{{topping.toppingId}}"> {{topping.toppingName}}</label>
+			</span>
+
+	<!-- 		{{toppings[1]}}{{toppings[1].selected }} {{toppings}} -->
+			<!-- 
 			<input id="toppping1" type="checkbox">
-			<label for="toppping1">Tomato</label>
+			<label for="toppping1">Capsicum</label>
 			<input id="toppping2" type="checkbox">
 			<label for="toppping2">Capsicum</label>
 			<input id="toppping3" type="checkbox">
@@ -104,16 +129,22 @@
 			<input id="toppping5" type="checkbox">
 			<label for="toppping5">Corn</label>
 			<input id="toppping6" type="checkbox">
-			<label for="toppping6">Cheese</label>
+			<label for="toppping6">Cheese</label> -->
 			<h5 style="color: red;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Non-Veg<span> <img src="nonveg.png" height="16px" width="16px"></span>: </h5>
-			<input id="toppping7" type="checkbox">
-			<label for="toppping7">Chicken Tikka</label>
-			<input id="toppping8" type="checkbox">
-			<label for="toppping8">Chicken Sausage</label>
-			<input id="toppping9" type="checkbox">
-			<label for="toppping9">Chicken Peri Peri</label>
+			<span ng-repeat="topping in toppings | filter : {vegetarian: false}">
+
+				<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+				<label for="{{topping.toppingId}}">{{topping.toppingName}}</label>
+			</span>
 			<hr/>
 			<h3>Crust</h3>
+			<span ng-repeat="crust in base">
+
+				<input id="b{{crust.baseId}}" name="Crust" type="radio" data-ng-model="crust.selected" data-ng-value="true" ng-click="setChoiceForBase(crust.baseId)">
+				<label for="b{{crust.baseId}}">{{crust.baseName}}</label>
+			</span>
+			
+			<!-- 
 			<input id="crust1" name="Crust" type="radio">
 			<label for="crust1">Regular</label>
 			<input id="crust2" name="Crust" type="radio">
@@ -125,22 +156,44 @@
 			<input id="crust5" name="Crust" type="radio">
 			<label for="crust5">Double Cheese Burst</label>
 			<input id="crust6" name="Crust" type="radio">
-			<label for="crust6">LB Special</label>
+			<label for="crust6">LB Special</label> -->
 			<hr/>
 			<h3>Size</h3>
-			<input id="regularSize" name="pizzaSize" type="radio">
-			<label for="regularSize">Regular</label>
-			<input id="mediumSize" name="pizzaSize" type="radio">
-			<label for="mediumSize">Medium</label>
-			<input id="largeSize" name="pizzaSize" type="radio">
-			<label for="largeSize">Large</label>
+			<span ng-repeat="size in PizzaSize">
+
+				<input id="{{size.Name}}" name="size" type="radio" data-ng-model="size.selected" data-ng-value="true" ng-click="setChoiceForSize(size.Name)">
+				<label for="{{size.Name}}">{{size.Name}}</label>
+				
+			</span>
+			{{toppings}}
+		<h3>Final:</h3>
+			<!-- <div class="row">
+		    <div class="col-xs-6 col-sm-3">
+		        <h4>My Pizza :</h4>
+				<p> This is the best as per your aukaat </p>
+		        <p> $10.99</p>
+		        <ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5"> Add to Cart </ngcart-addtocart>
+		    </div>
+
+			</div> -->
+
+			<a class="btn btn-sm btn-primary" ng-click = "addCustomizedPizzaToCart()">
+		    	Add To Cart       	
+		        </a>
 		</div>
-		
+
+
+
+
+
 		</div>
       </div>
     </div>
-  </div> 
-    <hr />
+  </div>
+
+
+
+    
 
     
 	<h3>Cart</h3>
@@ -201,8 +254,8 @@
 
         <thead>
         <tr>
-            <th></th>
-            <th></th>
+            <th>#</th>
+            <th>Name</th>
             <th>Quantity</th>
             <th>Amount</th>
             <th>Total</th>
@@ -264,7 +317,9 @@
         </span>
         <a class="btn btn-sm btn-primary"
            ng-click="ngCart.addItem(id, name, price, q, data)"
-           ng-transclude></a>
+           ng-transclude>
+           	
+        </a>
     </div>
     <mark  ng-show="inCart()">
         This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>

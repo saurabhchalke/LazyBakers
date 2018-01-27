@@ -13,6 +13,7 @@ angular.module('ngCart', ['ngCart.directives'])
 
     .run(['$rootScope', 'ngCart','ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
 
+
         $rootScope.$on('ngCart:change', function(){
             ngCart.$save();
         });
@@ -328,8 +329,173 @@ angular.module('ngCart', ['ngCart.directives'])
         }
     }])
 
-    .controller('CartController',['$scope', 'ngCart', function($scope, ngCart) {
+    .controller('CartController',['$scope','$compile', 'ngCart','filterFilter', function($scope, $compile, ngCart,filterFilter) {
         $scope.ngCart = ngCart;
+
+
+        (function initController() {
+
+            console.log("In self calling");
+            
+            
+
+            var toppings = [{"toppingId":0,"toppingName":"Tomato","price":50.0,"stock":100,"vegetarian":true},
+                            {"toppingId":2,"toppingName":"Capsicum","price":50.0,"stock":100,"vegetarian":true},
+                            {"toppingId":3,"toppingName":"Onion","price":50.0,"stock":100,"vegetarian":true},
+                            {"toppingId":4,"toppingName":"Mushroom","price":50.0,"stock":100,"vegetarian":true},
+                            {"toppingId":5,"toppingName":"Corn","price":50.0,"stock":100,"vegetarian":true},
+                            {"toppingId":6,"toppingName":"Cheese","price":50.0,"stock":100,"vegetarian":true},
+                            {"toppingId":7,"toppingName":"Chicken Tikka","price":60.0,"stock":100,"vegetarian":false},
+                            {"toppingId":8,"toppingName":"Chicken Sausage","price":60.0,"stock":100,"vegetarian":false},
+                            {"toppingId":9,"toppingName":"Chicken Peri Peri","price":60.0,"stock":100,"vegetarian":false}]
+
+
+            $.map( toppings, function( json_object ) {
+                  json_object["selected"] = false;
+            });
+
+                
+
+
+            $scope.toppings = toppings;
+
+            function getSelectedToppings() {
+                // console.log("called getSelectedToppings");
+                return filterFilter($scope.toppings, { selected: true });
+            };
+
+
+
+            // console.log(toppings);
+
+            var base = [{"baseId":1,"baseName":"Regular","price":20.0},
+                        {"baseId":2,"baseName":"Fresh Pan","price":30.0},
+                        {"baseId":3,"baseName":"Thin Crust","price":30.0},
+                        {"baseId":4,"baseName":"Cheese Burst","price":40.0},
+                        {"baseId":5,"baseName":"Double Cheese Burst","price":40.0},
+                        {"baseId":6,"baseName":"LB Special","price":40.0}]
+
+            $.map( base, function( json_object ) {
+                  json_object["selected"] = false;
+            });
+
+
+            $scope.base = base;
+
+            $scope.setChoiceForBase = function (baseID) {
+                 
+                    angular.forEach($scope.base, function(base){
+                            if(base.baseId == baseID)
+                                base.selected = true;
+                        
+                        base.selected = false;
+                       
+                     });
+            };
+
+            $scope.PizzaSize = [{"Name":"Regular","price":80,"selected":false},
+                            {"Name":"Medium","price":100,"selected":false},
+                            {"Name":"Large","price":120,"selected":false}
+                        ];
+
+            $scope.setChoiceForSize = function (name) {
+                 
+                    angular.forEach($scope.PizzaSize, function(obj){
+                            if(obj.Name == name)
+                                obj.selected = true;
+                        
+                        obj.selected = false;
+                                               
+                     });
+            };
+
+            $scope.addCustomizedPizzaToCart = function(){
+                
+                console.log("called addCustomizedPizzaToCart");
+                var topping = getSelectedToppings();
+                
+                var amt = 0;
+                var top= [];
+                $.map( topping, function( json_object ) {
+                  
+                    amt += json_object.price;
+                    top.push(json_object.toppingId);
+                  /*delete json_object.price;
+                  delete json_object.selected;
+                  delete json_object.stock;
+                  delete json_object.toppingName;
+                  delete json_object.vegetarian;
+                  delete json_object.$$hashKey;*/
+
+                });
+                console.log(top);
+                var baseId = null;
+                angular.forEach($scope.base, function(_base){
+                        if(_base.selected == true){
+                            amt+= _base.price;
+                            baseId = _base.baseId;
+                        }
+                     });
+                 console.log(baseId);
+                var size = "Regular";
+                angular.forEach($scope.PizzaSize, function(Piz_size){
+                        if(Piz_size.selected == true){
+                            amt += Piz_size.price;
+                            size = Piz_size.Name;
+                        }
+                     });
+                console.log(size);
+                //ngCart.addItem(id, name, price, q, data);
+                var data = {
+                    "toppings" : top,
+                    "baseId" : baseId,
+                    "size" : size  
+                };
+
+
+
+
+                
+                $scope.ngCart.addItem(null, "Customized_pizza", amt, 1, data);
+
+                $scope.toppings = toppings;
+                // console.log(toppings);
+
+            };
+
+
+            var pizza  =  {
+            "pizzaId" : 1,
+            "pizzaName" : "chicken tikka",
+            "pizzaDesc" : "pizza desc",
+            "price" : 21.44,
+            "size" : 1,
+            "customized" : 1,
+            "base" : {
+                "baseId" : 1,
+                "baseName" : "thin",
+                "price" : 21.4
+            }
+        };
+
+
+        var res = $compile($(`<div class="col-xs-6 col-sm-3">
+        <h4>`+ pizza.pizzaName + `</h4>
+        <p> `+   pizza.pizzaDesc +` <br> Base: `+ pizza.base.baseName +` </P>
+        <p> $`+ pizza.price +`</p>
+        <ngcart-addtocart id="`+ pizza.pizzaId +`" name="`+ pizza.pizzaName + `" price="`+ pizza.price +`" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+    </div>`))($scope);
+
+
+        res.appendTo('#standard_pizzas');        
+        })();
+
+
+
+
+        
+
+
 
     }])
 
@@ -339,20 +505,66 @@ angular.module('ngCart', ['ngCart.directives'])
 
 angular.module('ngCart.directives', ['ngCart.fulfilment'])
 
+    .controller('CartController1',['$scope', 'ngCart', function($scope, ngCart) {
+        $scope.ngCart = ngCart;
+
+                console.log("In controller1");
+
+                /*
+
+        (function initController() {
+
+            console.log("In self calling");
+            var pizza  =  {
+            "pizzaId" : 1,
+            "pizzaName" : "chicken tikka",
+            "pizzaDesc" : "pizza desc",
+            "price" : 21.44,
+            "size" : 1,
+            "customized" : 1,
+            "base" : {
+                "baseId" : 1,
+                "baseName" : "thin",
+                "price" : 21.4
+            }
+        };
+
+
+        $(`<div class="col-xs-6 col-sm-3">
+        <h4>`+ pizza.pizzaName + `</h4>
+        <p> `+   pizza.pizzaDesc +` <br> Base: `+ pizza.base.baseName +` </P>
+        <p> $`+ pizza.price +`</p>
+        <ngcart-addtocart id="`+ pizza.pizzaId +`" name="`+ pizza.pizzaName + `" price="`+ pizza.price +`" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+    </div>`).appendTo('#standard_pizzas');        
+        })();
+
+
+
+
+
+
+*/
+
+
+
+    }])/*
     .controller('CartController',['$scope', 'ngCart', function($scope, ngCart) {
         $scope.ngCart = ngCart;
-    }])
 
+        console.log("In CartController");
+
+    }])*/
     .directive('ngcartAddtocart', ['ngCart', function(ngCart){
         return {
             restrict : 'E',
-            controller : 'CartController',
+            controller : 'CartController1',//if you rename to CartController then the origninal will be called 5 times, so better keep this
             scope: {
                 id:'@',
                 name:'@',
                 quantity:'@',
                 quantityMax:'@',
                 price:'@',
+               
                 data:'='
             },
             transclude: true,
@@ -360,7 +572,7 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
             link:function(scope, element, attrs){
                 scope.attrs = attrs;
                 scope.inCart = function(){
-                    return  ngCart.getItemById(attrs.id);
+                    return ngCart.getItemById(attrs.id);
                 };
 
                 if (scope.inCart()){
@@ -369,7 +581,7 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
                     scope.q = parseInt(scope.quantity);
                 }
 
-                scope.qtyOpt =  [];
+                scope.qtyOpt = [];
                 for (var i = 1; i <= scope.quantityMax; i++) {
                     scope.qtyOpt.push(i);
                 }
@@ -467,6 +679,9 @@ angular.module('ngCart.fulfilment', [])
 .service('ngCart.fulfilment.http', ['$http', 'ngCart', function($http, ngCart){
 
 		console.log(ngCart.toObject());
+
+        document.write(JSON.stringify(ngCart.toObject()));
+
         
         this.checkout = function(settings){	
             return $http.post(settings.url,

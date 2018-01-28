@@ -288,6 +288,7 @@ angular.module('ngCart', ['ngCart.directives'])
             return +parseFloat(this.getQuantity() * this.getPrice()).toFixed(2);
         };
 
+
         item.prototype.toObject = function() {
             return {
                 id: this.getId(),
@@ -331,8 +332,8 @@ angular.module('ngCart', ['ngCart.directives'])
 
     .controller('CartController',['$scope','$compile', 'ngCart','filterFilter', function($scope, $compile, ngCart,filterFilter) {
         $scope.ngCart = ngCart;
-
-
+        $scope.random = 100;
+        console.log("In Cartcontroller");
         (function initController() {
 
             console.log("In self calling");
@@ -376,6 +377,9 @@ angular.module('ngCart', ['ngCart.directives'])
                         {"baseId":6,"baseName":"LB Special","price":40.0}]
 
             $.map( base, function( json_object ) {
+                if(json_object["baseName"] == "Regular")
+                    json_object["selected"] = true;
+                else  
                   json_object["selected"] = false;
             });
 
@@ -387,30 +391,35 @@ angular.module('ngCart', ['ngCart.directives'])
                     angular.forEach($scope.base, function(base){
                             if(base.baseId == baseID)
                                 base.selected = true;
-                        
-                        base.selected = false;
+                            else
+                                base.selected = false;
                        
                      });
             };
 
+
             $scope.PizzaSize = [{"Name":"Regular","price":80,"selected":false},
-                            {"Name":"Medium","price":100,"selected":false},
+                            {"Name":"Medium","price":100,"selected":true},
                             {"Name":"Large","price":120,"selected":false}
                         ];
 
+             
             $scope.setChoiceForSize = function (name) {
-                 
+                     
                     angular.forEach($scope.PizzaSize, function(obj){
                             if(obj.Name == name)
                                 obj.selected = true;
-                        
-                        obj.selected = false;
+                            else
+                                obj.selected = false;
                                                
                      });
+            
             };
 
+            
             $scope.addCustomizedPizzaToCart = function(){
                 
+
                 console.log("called addCustomizedPizzaToCart");
                 var topping = getSelectedToppings();
                 
@@ -437,7 +446,7 @@ angular.module('ngCart', ['ngCart.directives'])
                         }
                      });
                  console.log(baseId);
-                var size = "Regular";
+                var size = "Medium";
                 angular.forEach($scope.PizzaSize, function(Piz_size){
                         if(Piz_size.selected == true){
                             amt += Piz_size.price;
@@ -445,7 +454,7 @@ angular.module('ngCart', ['ngCart.directives'])
                         }
                      });
                 console.log(size);
-                //ngCart.addItem(id, name, price, q, data);
+                
                 var data = {
                     "toppings" : top,
                     "baseId" : baseId,
@@ -455,10 +464,13 @@ angular.module('ngCart', ['ngCart.directives'])
 
 
 
-                
-                $scope.ngCart.addItem(null, "Customized_pizza", amt, 1, data);
+                //ngCart.addItem(id, name, price, q, data);
 
-                $scope.toppings = toppings;
+
+                
+                ngCart.addItem($scope.random++, "Customized_pizza", amt, 1, data);
+
+                // $scope.toppings = toppings;
                 // console.log(toppings);
 
             };
@@ -487,7 +499,8 @@ angular.module('ngCart', ['ngCart.directives'])
     </div>`))($scope);
 
 
-        res.appendTo('#standard_pizzas');        
+        res.appendTo('#standard_pizzas');
+        
         })();
 
 
@@ -594,7 +607,7 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
     .directive('ngcartCart', [function(){
         return {
             restrict : 'E',
-            controller : 'CartController',
+            controller : 'CartController1',
             scope: {},
             templateUrl: 'template/ngCart/cart.html',
             link:function(scope, element, attrs){
@@ -606,7 +619,7 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
     .directive('ngcartSummary', [function(){
         return {
             restrict : 'E',
-            controller : 'CartController',
+            controller : 'CartController1',
             scope: {},
             transclude: true,
             templateUrl: 'template/ngCart/summary.html'
@@ -680,7 +693,7 @@ angular.module('ngCart.fulfilment', [])
 
 		console.log(ngCart.toObject());
 
-        document.write(JSON.stringify(ngCart.toObject()));
+        // document.write(JSON.stringify(ngCart.toObject()));
 
         
         this.checkout = function(settings){	

@@ -14,7 +14,7 @@
 
 
   <script type="text/javascript" src="dummy.js"></script>
-  
+  <script type="text/javascript" src="validation.js"></script>
 
   <link rel="stylesheet" type="text/css" href="normalize.css">
   <link rel="stylesheet" type="text/css" href="result-light.css">
@@ -67,7 +67,7 @@
 	<div id="standard_pizzas" class="row">
     <div class="col-xs-6 col-sm-3">
         <h4>My Item #1</h4>
-		<p> This is the best as per your aukaat </P>
+		<p> This is the best as per your aukaat </p>
         <p> $10.99</p>
         <ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
     </div>
@@ -116,20 +116,8 @@
 				<label for="{{topping.toppingId}}"> {{topping.toppingName}}</label>
 			</span>
 
-	<!-- 		{{toppings[1]}}{{toppings[1].selected }} {{toppings}} -->
-			<!-- 
-			<input id="toppping1" type="checkbox">
-			<label for="toppping1">Capsicum</label>
-			<input id="toppping2" type="checkbox">
-			<label for="toppping2">Capsicum</label>
-			<input id="toppping3" type="checkbox">
-			<label for="toppping3">Onion</label>
-			<input id="toppping4" type="checkbox">
-			<label for="toppping4">Mushroom</label>
-			<input id="toppping5" type="checkbox">
-			<label for="toppping5">Corn</label>
-			<input id="toppping6" type="checkbox">
-			<label for="toppping6">Cheese</label> -->
+			<!--{{toppings[1]}}{{toppings[1].selected }} {{toppings}} -->
+			
 			<h5 style="color: red;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Non-Veg<span> <img src="nonveg.png" height="16px" width="16px"></span>: </h5>
 			<span ng-repeat="topping in toppings | filter : {vegetarian: false}">
 
@@ -140,46 +128,26 @@
 			<h3>Crust</h3>
 			<span ng-repeat="crust in base">
 
-				<input id="b{{crust.baseId}}" name="Crust" type="radio" data-ng-model="crust.selected" data-ng-value="true" ng-click="setChoiceForBase(crust.baseId)">
+				<input id="b{{crust.baseId}}" name="Crust" type="radio" ng-model="crust.selected" data-ng-value="true" ng-click="setChoiceForBase(crust.baseId)">
 				<label for="b{{crust.baseId}}">{{crust.baseName}}</label>
 			</span>
 			
-			<!-- 
-			<input id="crust1" name="Crust" type="radio">
-			<label for="crust1">Regular</label>
-			<input id="crust2" name="Crust" type="radio">
-			<label for="crust2">Fresh Pan</label>
-			<input id="crust3" name="Crust" type="radio">
-			<label for="crust3">Thin Crust</label>
-			<input id="crust4" name="Crust" type="radio">
-			<label for="crust4">Cheese Burst</label>
-			<input id="crust5" name="Crust" type="radio">
-			<label for="crust5">Double Cheese Burst</label>
-			<input id="crust6" name="Crust" type="radio">
-			<label for="crust6">LB Special</label> -->
 			<hr/>
 			<h3>Size</h3>
+			<p ng-show="stateSize"> Please Select Size</p>
 			<span ng-repeat="size in PizzaSize">
 
 				<input id="{{size.Name}}" name="size" type="radio" data-ng-model="size.selected" data-ng-value="true" ng-click="setChoiceForSize(size.Name)">
 				<label for="{{size.Name}}">{{size.Name}}</label>
 				
 			</span>
-			{{toppings}}
-		<h3>Final:</h3>
-			<!-- <div class="row">
-		    <div class="col-xs-6 col-sm-3">
-		        <h4>My Pizza :</h4>
-				<p> This is the best as per your aukaat </p>
-		        <p> $10.99</p>
-		        <ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5"> Add to Cart </ngcart-addtocart>
-		    </div>
+			
+			<!-- {{toppings}} -->
+			<h3>Final:</h3>
 
-			</div> -->
-
-			<a class="btn btn-sm btn-primary" ng-click = "addCustomizedPizzaToCart()">
+			<a class="btn btn-sm btn-primary" ng-click = "addCustomizedPizzaToCart()" >
 		    	Add To Cart       	
-		        </a>
+		    </a>
 		</div>
 
 

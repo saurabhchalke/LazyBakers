@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+  <link rel="stylesheet" type="text/css" href="res/css/staticcss/normalize.css">
+  <link rel="stylesheet" type="text/css" href="res/css/staticcss/result-light.css">
+  <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="res/css/staticcss/toppings.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  <style type="text/css">
+	hr {
+		margin:40px 0;
+	}
+	
+	h3 { color:#1758AA}
+	
+	h3 span {font-size:14px; display:block;}
+	
+	span[ng-click] {
+        cursor: pointer;
+    }
+  </style>
+
+  <title>Angular: Empty Fiddle</title>
+</head>
+
+<body  style="background-image: url("res/img/parallax1.jpg");">
+	<div>
+
+  
+  
+		<div class="panel-group" id="accordion" >
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h4 class="panel-title">
+				  <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">Availability</a>
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  <button class="button button3" >Logout</button>
+				</h4>
+			  </div>
+			  <div id="collapse1" class="panel-collapse collapse in" >
+				
+				<div class="panel-body">
+				
+					<div class="availabilityContainer" >
+						<p> <h3>Toppings</h3> </p>
+						<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg: </h5>
+						<span ng-repeat="topping in toppings | filter : {vegetarian: true}">
+				
+							<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+							<label for="{{topping.toppingId}}"> {{topping.toppingName}}</label>
+						</span>
+						
+						<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg: </h5>
+						<span ng-repeat="topping in toppings | filter : {vegetarian: false}">
+
+							<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+							<label for="{{topping.toppingId}}">{{topping.toppingName}}</label>
+						</span>
+						
+						
+						<hr/>
+						<button class="button button1" ng-click="updateTopping()">Update Toppings inventory</button>
+					</div>
+				</div>      
+			  </div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">Add Pizzas</a>
+					</h4>
+				</div>
+				<div id="collapse2" class="panel-collapse collapse">
+					<div class="panel-body">
+						<div class="addToMenuContainer">
+							<form id="addNewPizza">
+								<h4>Toppings</h4>
+						<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg: </h5>
+						<span ng-repeat="topping in toppings | filter : {vegetarian: true}">
+					
+							<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+							<label for="{{topping.toppingId}}"> {{topping.toppingName}}</label>
+						</span>
+						
+						<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg: </h5>
+						<span ng-repeat="topping in toppings | filter : {vegetarian: false}">
+
+							<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+							<label for="{{topping.toppingId}}">{{topping.toppingName}}</label>
+						</span>
+						
+						
+						<hr/>
+								<h4>Crust</h4>
+								<span ng-repeat="crust in base">
+
+									<input id="b{{crust.baseId}}" name="Crust" type="radio" ng-model="crust.selected" data-ng-value="true" ng-click="setChoiceForBase(crust.baseId)">
+									<label for="b{{crust.baseId}}">{{crust.baseName}}</label>
+								</span>
+			
+			
+								<hr/>
+									Pizza Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									<input  type="text" id="pName" name="pName" value="LB Special"/> <br><br>
+									Price: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="number" id="pPrice" name="pPrice" value="199" />
+								<hr/>
+								<button class="button button1" >Add to menu</button>
+							</form>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div> 
+    </div>
+</div>
+
+
+
+
+
+</body>
+
+</html>

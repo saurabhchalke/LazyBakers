@@ -72,7 +72,7 @@ ywp2WebModule.config(['$routeProvider',
 
             .when('/admin', {
                 controller: 'AdminController',
-                templateUrl: 'webui/views/dashboard.html',
+                templateUrl: 'webui/views/Admin.html',
                 controllerAs: 'adm'
             })
 
@@ -100,7 +100,7 @@ ywp2WebModule.run(['$rootScope', '$location', '$cookieStore', '$http',
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             console.log('received event: ' + event + ' from: ' + current + ' to go to next: ' + next);
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/orderPizza','/menu','/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/admin','/orderPizza','/menu','/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             $rootScope.currentUser = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {

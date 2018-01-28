@@ -33,12 +33,12 @@ public class PizzaController {
 		return pizzaService.getAllPizza();
 	}
 	
-//	@RequestMapping(value = "/pizza", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-//	@ResponseBody
-//	public Integer addpizza(@RequestBody PizzaDTO pizzaDTO) {
-//		Base base = baseService.getBaseById(pizzaDTO.getBaseId());
-//		return pizzaService.createPizza(pizzaDTO.getPizzaName(), pizzaDTO.getPizzaDesc(), pizzaDTO.getPrice(), pizzaDTO.getSize(), pizzaDTO.isCustomized(), base);
-//	}
+	/*@RequestMapping(value = "/pizza", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	@ResponseBody
+	public Integer addpizza(@RequestBody PizzaDTO pizzaDTO) {
+		Base base = baseService.getBaseById(pizzaDTO.getBaseId());
+		return pizzaService.createPizza(pizzaDTO.getPizzaName(), pizzaDTO.getPizzaDesc(), pizzaDTO.getPrice(), pizzaDTO.getSize(), pizzaDTO.isCustomized(), base);
+	}*/
 	
 	@RequestMapping(value = "/pizza/{pId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
 	@ResponseBody

@@ -46,11 +46,11 @@
 	      
 	      <property name = "hibernate.connection.username">root</property>
 	      
-	      <property name = "hibernate.connection.password"></property>
+	      <property name = "hibernate.connection.password">root</property>
 	      <property name = "hibernate.connection.driver_class">
 	         com.mysql.jdbc.Driver
 	      </property>
- 
+	      
         <!-- Map the app related object entity classes here -->
         <mapping class="lazybakers.model.entity.User" />
         <!-- <mapping class="lazybakers.model.entity.Category" /> -->

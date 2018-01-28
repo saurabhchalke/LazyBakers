@@ -338,7 +338,9 @@ angular.module('ngCart', ['ngCart.directives'])
             console.log("In self calling");
             
             
-
+            
+            
+            
             var toppings = [{"toppingId":0,"toppingName":"Tomato","price":50.0,"stock":100,"vegetarian":true},
                             {"toppingId":2,"toppingName":"Capsicum","price":50.0,"stock":100,"vegetarian":true},
                             {"toppingId":3,"toppingName":"Onion","price":50.0,"stock":100,"vegetarian":true},
@@ -622,7 +624,7 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
     .directive('ngcartCheckout', [function(){
         return {
             restrict : 'E',
-            controller : ('CartController', ['$scope', 'ngCart', 'fulfilmentProvider', function($scope, ngCart, fulfilmentProvider) {
+            controller : ('CartController1', ['$scope', 'ngCart', 'fulfilmentProvider', function($scope, ngCart, fulfilmentProvider) {
                 $scope.ngCart = ngCart;
 
                 $scope.checkout = function () {

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome User</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="User.css" />
+    <script data-require="angular.js@1.0.x" src="http://code.angularjs.org/1.0.7/angular.min.js" data-semver="1.0.7"></script>
+    <script src="User.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet"></link>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    <h2>Welcome {{user.fname}} {{user.lname}} 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="button button3" >Logout</button>
+	</h2>
+	
+	
+	<br><br>
+    <div class="infoDiv">
+		Name:
+		<span class="editrow" child-scope>
+		  <span ng-hide="editing">
+			{{user.fname}} <span ng-click="editing = true"><i class="icon-pencil"></i></span>
+		  </span>
+		  <span ng-show="editing">
+			<input type="text" ng-model="user.fname"> 
+			<span ng-click="editing = false"><i class="icon-ok"></i></span>
+		  </span>
+		</span>
+		
+		<span class="editrow" child-scope>
+		  <span ng-hide="editing">
+			{{user.lname}} <span ng-click="editing = true"><i class="icon-pencil"></i></span>
+		  </span>
+		  <span ng-show="editing">
+			<input type="text" ng-model="user.lname"> 
+			<span ng-click="editing = false"><i class="icon-ok"></i></span>
+		  </span>
+		</span>
+		<br><br>
+		Phone Number: 
+		<span class="editrow" child-scope>
+			<span ng-hide="editing">
+				{{user.pNo}} <span ng-click="editing = true"><i class="icon-pencil"></i></span>
+			  </span>
+			  <span ng-show="editing">
+				<input type="text" ng-model="user.pNo"> 
+				<span ng-click="editing = false"><i class="icon-ok"></i></span>
+			  </span>
+			</span>
+		</span>
+		<br><br>
+		eMail:
+		<span class="editrow" child-scope>
+			<span ng-hide="editing">
+				{{user.eMail}} <span ng-click="editing = true"><i class="icon-pencil"></i></span>
+			  </span>
+			  <span ng-show="editing">
+				<input type="text" ng-model="user.eMail"> 
+				<span ng-click="editing = false"><i class="icon-ok"></i></span>
+			  </span>
+			</span>
+		</span>
+		<br><br>
+		
+		Address:
+		
+		<br><br>
+		
+		<button class="button button1" >Save Changes</button>
+	</div>
+	<hr/>
+	<h4>Current Order status:</h4>
+	<div class="row shop-tracking-status infoDiv">
+    
+    <div class="col-md-12">
+        <div class="well">
+    
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputOrderTrackingID" class="col-sm-2 control-label">Order id</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputOrderTrackingID" value="" placeholder="# put your order id here">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" id="shopGetOrderStatusID" class="btn btn-success">Get status</button>
+                    </div>
+                </div>
+            </div>
+    
+            <h4>Your order status:</h4>
+            <span class="prefix">Date created:</span>
+            <span class="label label-success">12.12.2013</span><br><br>
+			<span class="prefix">Last update:</span>
+            <span class="label label-success">12.15.2013</span><br><br>
+            You can find out latest status of your order with the following link: <br>
+            <a href="//tracking/link/goes/here">//tracking/link/goes/here</a>
+            </ul>
+
+            <div class="order-status">
+
+                <div class="order-status-timeline">
+					<div class="order-status-timeline-completion c2"></div>
+                </div>
+
+                <div class="image-order-status image-order-status-new active img-circle">
+                    <span class="status">Order Received</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-active active img-circle">
+                    <span class="status">Order Accepted</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-intransit active img-circle">
+                    <span class="status">Cooking in progress</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-delivered active img-circle">
+                    <span class="status">Out for delivery</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-completed active img-circle">
+                    <span class="status">Delivered</span>
+                    <div class="icon"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+	<hr/>
+	Previous bills:
+  </body>
+
+</html>

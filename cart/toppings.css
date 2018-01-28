@@ -4,6 +4,33 @@
   box-sizing: border-box;
 }
 
+.button{
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+	font-size: 120%;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+	font-size: 120%;
+}
+
 .toppingsContainer {
   font: 1em 'Arial', sans-serif;
   position: relative;
@@ -52,12 +79,15 @@ label:last-of-type {
 
 label:hover, input:focus + label {
   box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+  font-size: 120%;
 }
 
 input:checked + label {
   background-color: #ab576c;
+  font-size: 120%;
 }
 
 input:checked + label::before {
   background-color: #fff;
+  font-size: 120%;
 }

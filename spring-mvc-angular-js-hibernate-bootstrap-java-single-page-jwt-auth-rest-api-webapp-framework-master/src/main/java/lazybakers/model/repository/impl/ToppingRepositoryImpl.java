@@ -42,19 +42,13 @@ public class ToppingRepositoryImpl implements ToppingRepository {
 	}
 
 	@Override
-	public void updateTopping(int toppingId, String toppingname, float price, int stock, boolean vegetarian) {
+	public void updateTopping(int toppingId) {
 		SessionFactory sf = hibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
 		Transaction tx = null;
 		try {
 	         tx = session.beginTransaction();
-	         Topping topping = (Topping)session.get(Topping.class, toppingId); 
-	         topping.setToppingId(toppingId);
-	         topping.setToppingName(toppingname);
-	         topping.setPrice(price);
-	         topping.setStock(stock);
-	         topping.setVegetarian(vegetarian);
-			 session.update(topping); 
+	         session.createQuery("update topping set stock = stock + 100 where topping_id = :toppingId");
 	         tx.commit();
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();

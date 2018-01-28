@@ -8,7 +8,7 @@ public interface ToppingService {
 
 	public Integer createTopping(String toppingname, float price, int stock, boolean vegetarian);
 	
-	public void updateTopping(int toppindId, String toppingname, float price, int stock, boolean vegetarian);
+	public void updateTopping(int toppindId);
 	
 	public void deleteTopping(int toppingId);
 	

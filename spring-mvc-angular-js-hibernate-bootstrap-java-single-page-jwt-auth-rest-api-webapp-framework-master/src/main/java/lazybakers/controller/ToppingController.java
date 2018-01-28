@@ -17,7 +17,6 @@ import lazybakers.model.entity.Topping;
 import lazybakers.service.ToppingService;
 
 @Controller
-//@RequestMapping("topping")
 public class ToppingController {
 	private static Logger LOG = LoggerFactory.getLogger(ToppingController.class);
 	@Autowired
@@ -33,6 +32,12 @@ public class ToppingController {
 	@ResponseBody
 	public Topping gettopping(@PathVariable int tId){
         return toppingService.getToppingById(tId);
+    }
+	
+	@RequestMapping(value = "/topping/{tId}", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody
+	public void updatetopping(@PathVariable int tId){
+        toppingService.updateTopping(tId);
     }
 	
 	@RequestMapping(value = "/topping", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")

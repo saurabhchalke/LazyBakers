@@ -10,7 +10,7 @@
 
         <!-- You will usually want to set this to true while debugging hibernate queries -->
         <property name="hibernate.show_sql">true</property>
-		<property name="hbm2ddl.auto">create-drop</property>    
+		<property name="hbm2ddl.auto">update</property>    
         <property name = "hibernate.connection.url">
          jdbc:mysql://localhost:3306/test
 	      </property>
@@ -21,20 +21,20 @@
 	      <property name = "hibernate.connection.driver_class">
 	         com.mysql.jdbc.Driver
 	      </property>
-
+ 
         <!-- Map the app related object entity classes here -->
-        <!--  <mapping class="yourwebproject2.model.entity.User" />
-        <mapping class="yourwebproject2.model.entity.Category" />-->
-        <mapping class="yourwebproject2.model.entity.Address" />
-        <mapping class="yourwebproject2.model.entity.Base" />
-        <mapping class="yourwebproject2.model.entity.Bill" />
-        <mapping class="yourwebproject2.model.entity.Coupon" />
-        <mapping class="yourwebproject2.model.entity.Customer" />
-        <mapping class="yourwebproject2.model.entity.Pizza" />
-        <mapping class="yourwebproject2.model.entity.PizzaOrder" />
-        <mapping class="yourwebproject2.model.entity.PizzaTopping" />
-        <mapping class="yourwebproject2.model.entity.PizzaToppingEmbedabble" />
-        <mapping class="yourwebproject2.model.entity.Topping" />
+        <mapping class="lazybakers.model.entity.User" />
+        <!-- <mapping class="lazybakers.model.entity.Category" /> -->
+        <mapping class="lazybakers.model.entity.Address" />
+        <mapping class="lazybakers.model.entity.Base" />
+        <mapping class="lazybakers.model.entity.Bill" />
+        <mapping class="lazybakers.model.entity.Coupon" />
+        <!-- <mapping class="lazybakers.model.entity.Customer" /> -->
+        <mapping class="lazybakers.model.entity.Pizza" />
+        <mapping class="lazybakers.model.entity.PizzaOrder" />
+        <mapping class="lazybakers.model.entity.PizzaTopping" />
+        <mapping class="lazybakers.model.entity.Topping" />
+        
           
     </session-factory>
 </hibernate-configuration> 

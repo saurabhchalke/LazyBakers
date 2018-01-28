@@ -10,7 +10,6 @@ angular.module('ngCart', ['ngCart.directives'])
         this.$get = function () {
         };
     })
-
     .run(['$rootScope', 'ngCart','ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
 
 

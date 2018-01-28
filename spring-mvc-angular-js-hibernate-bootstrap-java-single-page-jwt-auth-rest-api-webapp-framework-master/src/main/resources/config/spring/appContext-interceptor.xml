@@ -6,6 +6,6 @@
            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
        <!-- Interceptors -->
-       <bean id="webAppMetricsInterceptor" class="yourwebproject2.interceptor.WebAppMetricsInterceptor" />
-       <bean id="webAppExceptionInterceptor" class="yourwebproject2.interceptor.WebAppExceptionAdvice" />
+       <bean id="webAppMetricsInterceptor" class="lazybakers.interceptor.WebAppMetricsInterceptor" />
+       <bean id="webAppExceptionInterceptor" class="lazybakers.interceptor.WebAppExceptionAdvice" />
 </beans>

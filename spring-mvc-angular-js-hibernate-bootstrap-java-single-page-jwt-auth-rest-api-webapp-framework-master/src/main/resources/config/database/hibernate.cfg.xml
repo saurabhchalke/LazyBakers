@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-configuration
+<!-- <!DOCTYPE hibernate-configuration
         PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
     <session-factory>
-        <!-- The dialect to be used for the hibernate and config.database interactions -->
+        The dialect to be used for the hibernate and config.database interactions
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- You will usually want to set this to true while debugging hibernate queries -->
+        You will usually want to set this to true while debugging hibernate queries
         <property name="hibernate.show_sql">true</property>
         
         <property name = "hibernate.connection.url">
@@ -22,8 +22,48 @@
 	         com.mysql.jdbc.Driver
 	      </property>
 
-        <!-- Map the app related object entity classes here -->
+        Map the app related object entity classes here
         <mapping class="yourwebproject2.model.entity.User" />
         <mapping class="yourwebproject2.model.entity.Category" />
+    </session-factory>
+</hibernate-configuration>  -->
+
+<!DOCTYPE hibernate-configuration
+        PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- The dialect to be used for the hibernate and config.database interactions -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- You will usually want to set this to true while debugging hibernate queries -->
+        <property name="hibernate.show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>    
+        <property name = "hibernate.connection.url">
+         jdbc:mysql://localhost:3306/test
+	      </property>
+	      
+	      <property name = "hibernate.connection.username">root</property>
+	      
+	      <property name = "hibernate.connection.password"></property>
+	      <property name = "hibernate.connection.driver_class">
+	         com.mysql.jdbc.Driver
+	      </property>
+ 
+        <!-- Map the app related object entity classes here -->
+        <mapping class="lazybakers.model.entity.User" />
+        <!-- <mapping class="lazybakers.model.entity.Category" /> -->
+        <mapping class="lazybakers.model.entity.Address" />
+        <mapping class="lazybakers.model.entity.Base" />
+        <mapping class="lazybakers.model.entity.Bill" />
+        <mapping class="lazybakers.model.entity.Coupon" />
+        <!-- <mapping class="lazybakers.model.entity.Customer" /> -->
+        <mapping class="lazybakers.model.entity.Pizza" />
+        <mapping class="lazybakers.model.entity.PizzaOrder" />
+        <mapping class="lazybakers.model.entity.PizzaTopping" />
+        <mapping class="lazybakers.model.entity.Topping" />
+        
+          
     </session-factory>
 </hibernate-configuration> 

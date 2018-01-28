@@ -28,7 +28,7 @@
         <!-- Setting up the data source as defined in an external context file: appContext-jdbc.xml -->
         <property name="dataSource" ref="dataSource"/>
 
-        <property name="packagesToScan" value="yourwebproject2.model"/>
+        <property name="packagesToScan" value="lazybakers.model"/>
 
         <!-- Setting the Hibernate config file path for linking up the entity POJOs -->
         <property name="configLocation" value="classpath:config/database/hibernate.cfg.xml"/>

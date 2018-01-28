@@ -14,7 +14,7 @@
 		   http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
     <!-- Add controller package to be scanned for this path -->
-    <context:component-scan base-package="yourwebproject2.controller"/>
+    <context:component-scan base-package="lazybakers.controller"/>
 
     <!-- json handler -->
     <bean id="jsonHttpMessageConverter"

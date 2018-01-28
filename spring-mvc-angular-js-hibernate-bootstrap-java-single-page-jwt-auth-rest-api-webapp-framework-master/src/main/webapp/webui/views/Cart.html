@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+
+
+  <script type="text/javascript" src="res/js/staticjs/dummy.js"></script>
+  <script type="text/javascript" src="res/js/staticjs/ngCart.js"></script>
+  <link rel="stylesheet" type="text/css" href="res/css/staticcss/normalize.css">
+  <link rel="stylesheet" type="text/css" href="res/css/staticcss/result-light.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="res/css/staticcss/toppings.css">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <script src="webui/controllers/ngCart.js"></script> -->
+  <style type="text/css">
+	
+	h3 { color:#1758AA}
+	h3 span {font-size:14px; display:block;}
+	span[ng-click] {
+        cursor: pointer;
+    }
+  </style>
+
+  <title>Angular: Empty Fiddle</title>
+</head>
+
+<body ng-app="myApp">
+  <div ng-controller="myCtrl">
+
+  
+  
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Our standard Pizzas</a>
+        </h4>
+      </div>
+<div id="collapse1" class="panel-collapse collapse in">
+ 	<div class="panel-body">
+		
+		
+<h3>Add to Cart</h3>
+	<div id="standard_pizzas" class="row">
+    <div class="col-xs-6 col-sm-3">
+        <h4>My Item #1</h4>
+		<p> This is the best as per your aukaat </p>
+        <p> $10.99</p>
+        <ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <h4>My Item #2</h4>
+        <p> $15.29</p>
+        <ngcart-addtocart id="item2" name="My Item #2" price="15.29" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <h4>My Item #3</h4>
+        <p> $25.75</p>
+        <ngcart-addtocart id="item3" name="My Item #3" price="25.75" quantity="3" quantity-max="10">Add to Cart</ngcart-addtocart>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <h4>My Item #4</h4>
+        <p> $29.25</p>
+        <ngcart-addtocart id="item4" name="My Item #4" price="29.25" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>        
+    </div>
+</div>
+		
+		
+		
+		
+		
+		</div>
+      
+	  </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Make your own Pizza</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+		
+		<div class="toppingsContainer" ng-controller = "CartController">
+			<p> <h3>Toppings</h3> </p>
+			<h5 style="color: green;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg<span> <img src="res/img/veg.jpg" height="15px" width="15px"></span>: </h5>
+
+				
+			<span ng-repeat="topping in toppings | filter : {vegetarian: true}">
+				
+				<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+				<label for="{{topping.toppingId}}"> {{topping.toppingName}}</label>
+			</span>
+
+			<!--{{toppings[1]}}{{toppings[1].selected }} {{toppings}} -->
+			
+			<h5 style="color: red;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Non-Veg<span> <img src="res/img/nonveg.png" height="16px" width="16px"></span>: </h5>
+			<span ng-repeat="topping in toppings | filter : {vegetarian: false}">
+
+				<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
+				<label for="{{topping.toppingId}}">{{topping.toppingName}}</label>
+			</span>
+			<hr/>
+			<h3>Crust</h3>
+			<span ng-repeat="crust in base">
+
+				<input id="b{{crust.baseId}}" name="Crust" type="radio" ng-model="crust.selected" data-ng-value="true" ng-click="setChoiceForBase(crust.baseId)">
+				<label for="b{{crust.baseId}}">{{crust.baseName}}</label>
+			</span>
+			
+			<hr/>
+			<h3>Size</h3>
+			<p ng-show="stateSize"> Please Select Size</p>
+			<span ng-repeat="size in PizzaSize">
+
+				<input id="{{size.Name}}" name="size" type="radio" data-ng-model="size.selected" data-ng-value="true" ng-click="setChoiceForSize(size.Name)">
+				<label for="{{size.Name}}">{{size.Name}}</label>
+				
+			</span>
+			
+			<!-- {{toppings}} -->
+			<h3>Final:</h3>
+
+			<a class="btn btn-sm btn-primary button button1" ng-click = "addCustomizedPizzaToCart()" >
+		    	Add To Cart       	
+		    </a>
+		</div>
+		</div>
+      </div>
+    </div>
+  </div>
+
+
+
+    
+
+    
+	<h3>Cart</h3>
+    <ngcart-cart></ngcart-cart>
+    <hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        
+    <h3>Checkout </h3>
+        
+        
+        <div class="row">
+    <div class="col-xs-4">
+        <h4>service 'log'</h4>
+        <ngcart-checkout service="log">Checkout</ngcart-checkout>
+    </div>
+    <div class="col-xs-4">
+        <h4>service 'http'</h4>
+        <ngcart-checkout service="http" settings="httpSettings">Checkout </ngcart-checkout>
+    </div>
+    <div class="col-xs-4">
+        <h4>service 'paypal'</h4>
+        <ngcart-checkout service="paypal" settings="payPalSettings"></ngcart-checkout>
+    </div>
+</div>
+        
+
+
+    </div>
+</div>
+
+</div>
+
+
+<!--  TEMPALATES -->
+<!--  TEMPALATES -->
+<!--  TEMPALATES -->
+
+<script type="text/ng-template" id="template/ngCart/summary.html"><div class="row">
+ 
+    <div class="col-md-6">{{ ngCart.getTotalItems() }}
+        <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
+        <br />{{ ngCart.totalCost() | currency }}
+    </div>
+</div>
+</script>
+
+
+<script type="text/ng-template" id="template/ngCart/cart.html">
+<div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    Your cart is empty
+</div>
+
+<div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
+
+    <table class="table table-striped ngCart cart">
+
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr ng-show="ngCart.getTax()">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
+            <td>{{ ngCart.getTax() | currency }}</td>
+        </tr>
+        <tr ng-show="ngCart.getShipping()">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Shipping:</td>
+            <td>{{ ngCart.getShipping() | currency }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{ ngCart.totalCost() | currency }}</td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr ng-repeat="item in ngCart.getCart().items track by $index">
+            <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
+
+            <td>{{ item.getName() }}</td>
+            <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
+                      ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+            <td>{{ item.getPrice() | currency}}</td>
+            <td>{{ item.getTotal() | currency }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="template/ngCart/addtocart.html">
+
+<div ng-hide="attrs.id">
+    <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude> </a>
+
+
+</div>
+<div ng-show="attrs.id">
+    <div>
+        <span ng-show="quantityMax">
+            <select name="quantity" id="quantity" ng-model="q"
+                    ng-options=" v for v in qtyOpt"></select>
+        </span>
+        <a class="btn btn-sm btn-primary"
+           ng-click="ngCart.addItem(id, name, price, q, data)"
+           ng-transclude>
+           	
+        </a>
+    </div>
+    <mark  ng-show="inCart()">
+        This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>
+    </mark>
+</div>
+</script>
+
+<script type="text/ng-template" id="template/ngCart/checkout.html">
+    
+<div ng-if="service=='http' || service == 'log'">
+    <button class="btn btn-primary" ng-click="checkout()" ng-disabled="!ngCart.getTotalItems()" ng-transclude>Checkout</button>
+</div>
+
+
+    
+</script>
+
+<script type='text/javascript'>
+	var myApp = angular.module('myApp',['ngCart']);
+	myApp.controller ('myCtrl', ['$scope', '$http', 'ngCart', function($scope, $http, ngCart) {
+		ngCart.setTaxRate(5.0);
+		ngCart.setShipping(30.0);    
+	}]);
+</script>
+
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "gmmnsLqp"
+    }], "*")
+  }
+</script>
+
+</body>
+
+</html>

@@ -53,7 +53,7 @@
     <servlet>
         <servlet-name>webAppDispatcherServlet</servlet-name>
         <servlet-class>
-            yourwebproject2.servlet.YourWebAppDispatcherServlet
+            lazybakers.servlet.YourWebAppDispatcherServlet
         </servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>

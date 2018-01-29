@@ -93,14 +93,14 @@
 							<form id="addNewPizza">
 								<h4>Toppings</h4>
 						<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg: </h5>
-						<span ng-repeat="topping in toppings | filter : {vegetarian: true}">
+						<span ng-repeat="topping in toppings2 | filter : {vegetarian: true}">
 					
 							<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
 							<label for="{{topping.toppingId}}"> {{topping.toppingName}}</label>
 						</span>
 						
 						<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Veg: </h5>
-						<span ng-repeat="topping in toppings | filter : {vegetarian: false}">
+						<span ng-repeat="topping in toppings2 | filter : {vegetarian: false}">
 
 							<input id="{{topping.toppingId}}" type="checkbox" ng-model="topping.selected">
 							<label for="{{topping.toppingId}}">{{topping.toppingName}}</label>
@@ -118,11 +118,11 @@
 			
 								<hr/>
 									Pizza Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-									<input  type="text" id="pName" name="pName" value="LB Special"/> <br><br>
+									<input  type="text" id="pName" name="pName" ng-model="pizzaName"/> <br><br>
 									Price: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="number" id="pPrice" name="pPrice" value="199" />
+									<input type="number" id="pPrice" name="pPrice"  ng-model="pizzaValue" />
 								<hr/>
-								<button class="button button1" >Add to menu</button>
+								<button class="button button1" ng-click="addPizza()">Add to menu</button>
 							</form>
 						</div>	
 					</div>

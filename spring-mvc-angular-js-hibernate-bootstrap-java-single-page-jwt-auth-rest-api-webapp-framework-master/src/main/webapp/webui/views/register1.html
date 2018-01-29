@@ -34,10 +34,8 @@
                                 <fieldset ng-disabled="isSubmitted">
                                 <div class="form-group" ng-class="{ 'has-error': form.fnamesignup.$dirty && form.lnamesignup.$dirty && form.fnamesignup.$error.required && form.lnamesignup.$error.required }"> 
                                     <label for="usernamesignup" class="uname" >Name</label>
-                                    <input id="fnamesignup" name="fnamesignup" required="required" ng-model="rc.user.fName" type="text" placeholder="First Name" width="5%" />
-									<span ng-show="form.fnamesignup.$dirty && form.fnamesignup.$error.required" class="help-block">First Name is required</span>
-									<input id="lnamesignup" name="lnamesignup" required="required" ng-model="rc.user.lName" type="text" placeholder="Last Name" />
-									<span ng-show="form.lnamesignup.$dirty && form.lnamesignup.$error.required" class="help-block">Last Name is required</span>	
+                                    <input id="fnamesignup" name="fnamesignup" required="required" ng-model="rc.user.displayName" type="text" placeholder="First Name" width="5%" />
+									<span ng-show="form.fnamesignup.$dirty && form.fnamesignup.$error.required" class="help-block">First Name is required</span>	
                                 </div>
                                 <div class="form-group" ng-class="{ 'has-error': form.emailsignup.$dirty && (form.emailsignup.$error.required || form.emailsignup.$error.email) }"> 
                                     <label for="emailsignup" class="youmail"> Your email</label>

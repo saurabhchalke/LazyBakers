@@ -10,7 +10,8 @@ var ywp2WebModule = angular.module('YWP2Web',
                                         'App',
                                         'ngCart',
                                         'ngCart.directives',
-                                        'ngCart.fulfilment'
+                                        'ngCart.fulfilment',
+                                        
                                     ]);
 
 ywp2WebModule.config(['$routeProvider',
@@ -75,6 +76,11 @@ ywp2WebModule.config(['$routeProvider',
                 templateUrl: 'webui/views/Admin.html',
                 controllerAs: 'adm'
             })
+            .when('/user', {
+                controller: 'UserController',
+                templateUrl: 'webui/views/User.html',
+                controllerAs: 'usr'
+            })
 
             .when('/app', {
                 controller: 'AppController',
@@ -100,7 +106,7 @@ ywp2WebModule.run(['$rootScope', '$location', '$cookieStore', '$http',
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             console.log('received event: ' + event + ' from: ' + current + ' to go to next: ' + next);
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/admin','/orderPizza','/menu','/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/user','/admin','/menu','/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             $rootScope.currentUser = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {

@@ -1,4 +1,3 @@
-
 angular.module('App')
     .controller('AppController', AppController);
 

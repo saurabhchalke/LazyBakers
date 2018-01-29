@@ -31,9 +31,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 import java.util.HashMap;
 
-/**
- * Referred: https://github.com/mpetersen/aes-example, http://niels.nu/blog/2015/json-web-tokens.html
- */
 @Controller
 @RequestMapping("user")
 public class UserController extends BaseController {

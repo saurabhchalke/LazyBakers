@@ -24,6 +24,8 @@
                     <div id="wrapper">
                         <div id="login" class="animate form" ng-controller="LoginController as lc">
                         	<div ng-show="lc.error" class="alert alert-danger">{{lc.error}}</div>
+                        	
+                        	
                             <form ng-submit="lc.login()" autocomplete="on"  name = "form" role="form"> 
                                 <h1>Log In</h1> 
                                 <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && (form.email.$error.required || form.email.$error.email) }"> 

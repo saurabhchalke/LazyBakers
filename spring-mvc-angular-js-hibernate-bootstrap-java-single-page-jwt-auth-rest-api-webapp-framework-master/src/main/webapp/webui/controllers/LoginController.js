@@ -11,6 +11,7 @@ function LoginController($scope, $rootScope, $location, AuthService) {
 
     lc.login = function () {
         console.log('received the login event for user: ' + lc.user.email);
+        console.log(lc.user);
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
         AuthService.login(lc.user.email, lc.user.password, function(response) {
@@ -19,11 +20,12 @@ function LoginController($scope, $rootScope, $location, AuthService) {
                 AuthService.setCredentials();
                 
                 console.log("succesfullly logged in");
-                $location.path('/app');
+                $location.path('/home');
             } else {
             	
             	console.log("Invalid password");
                 lc.error = response.result;
+                
                 lc.details = response.details;
                 lc.dataLoading = false;
                 $rootScope.isSubmitted = false;

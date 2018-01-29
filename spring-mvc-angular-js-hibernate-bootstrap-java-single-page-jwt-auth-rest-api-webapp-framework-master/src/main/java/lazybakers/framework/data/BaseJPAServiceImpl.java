@@ -9,7 +9,6 @@ import java.util.Collection;
  * BaseService implementation for basic access to service
  * methods of CRUD operations on entity
  *
- * @author : Y Kamesh Rao
  */
 public abstract class BaseJPAServiceImpl<T extends Entity, ID extends Serializable> implements BaseService<T, ID> {
     protected BaseJPARepository<T, ID> baseJpaRepository;

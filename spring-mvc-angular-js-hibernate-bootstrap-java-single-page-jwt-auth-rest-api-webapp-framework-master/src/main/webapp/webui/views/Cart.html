@@ -13,7 +13,7 @@
 
 
   <script type="text/javascript" src="res/js/staticjs/dummy.js"></script>
-  <script type="text/javascript" src="res/js/staticjs/ngCart.js"></script>
+  <!-- <script type="text/javascript" src="res/js/staticjs/ngCart.js"></script> -->
   <link rel="stylesheet" type="text/css" href="res/css/staticcss/normalize.css">
   <link rel="stylesheet" type="text/css" href="res/css/staticcss/result-light.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
@@ -22,17 +22,6 @@
   
 
 
-
-
-
-
-
-
-
-
-
-
-  <!-- <script src="webui/controllers/ngCart.js"></script> -->
   <style type="text/css">
 	
 	h3 { color:#1758AA}
@@ -168,18 +157,9 @@
     <h3>Checkout </h3>
         
         
-        <div class="row">
+ <div class="row">
     <div class="col-xs-4">
-        <h4>service 'log'</h4>
-        <ngcart-checkout service="log">Checkout</ngcart-checkout>
-    </div>
-    <div class="col-xs-4">
-        <h4>service 'http'</h4>
         <ngcart-checkout service="http" settings="httpSettings">Checkout </ngcart-checkout>
-    </div>
-    <div class="col-xs-4">
-        <h4>service 'paypal'</h4>
-        <ngcart-checkout service="paypal" settings="payPalSettings"></ngcart-checkout>
     </div>
 </div>
         

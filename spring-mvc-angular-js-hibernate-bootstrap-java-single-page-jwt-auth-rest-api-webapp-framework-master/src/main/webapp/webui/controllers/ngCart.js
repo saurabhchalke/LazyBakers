@@ -10,6 +10,7 @@ angular.module('ngCart', ['ngCart.directives'])
         this.$get = function () {
         };
     })
+
     .run(['$rootScope', 'ngCart','ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
 
 
@@ -290,7 +291,7 @@ angular.module('ngCart', ['ngCart.directives'])
 
         item.prototype.toObject = function() {
             return {
-                id: this.getId(),
+                id: parseInt(this.getId()),
                 name: this.getName(),
                 price: this.getPrice(),
                 quantity: this.getQuantity(),
@@ -338,9 +339,7 @@ angular.module('ngCart', ['ngCart.directives'])
             console.log("In self calling");
             
             
-            
-            
-            
+
             var toppings = [{"toppingId":0,"toppingName":"Tomato","price":50.0,"stock":100,"vegetarian":true},
                             {"toppingId":2,"toppingName":"Capsicum","price":50.0,"stock":100,"vegetarian":true},
                             {"toppingId":3,"toppingName":"Onion","price":50.0,"stock":100,"vegetarian":true},
@@ -357,6 +356,21 @@ angular.module('ngCart', ['ngCart.directives'])
             });
 
                 
+            /*var topping;
+            $http.get(BackendCfg.url + '/api/topping').then(function(response) {
+            	
+            	topping = response.data;
+            	$.map( topping, function( json_object ) {
+                    json_object["selected"] = false;
+            	});
+            	$scope.toppings = topping;
+            	$scope.toppings2 = topping;
+            });*/
+
+            
+            
+            
+            
 
 
             $scope.toppings = toppings;
@@ -459,18 +473,13 @@ angular.module('ngCart', ['ngCart.directives'])
 
 
 
-                //ngCart.addItem(id, name, price, q, data);
-
-
-                
+                //addItem(id, name, price, q, data);
                 ngCart.addItem($scope.random++, "Customized_pizza", amt, 1, data);
-
-                // $scope.toppings = toppings;
-                // console.log(toppings);
-
+                
+                
             };
 
-
+/*
             var pizza  =  {
             "pizzaId" : 1,
             "pizzaName" : "chicken tikka",
@@ -494,7 +503,7 @@ angular.module('ngCart', ['ngCart.directives'])
     </div>`))($scope);
 
 
-        res.appendTo('#standard_pizzas');
+        res.appendTo('#standard_pizzas');*/
         
         })();
 
@@ -516,52 +525,10 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
     .controller('CartController1',['$scope', 'ngCart', function($scope, ngCart) {
         $scope.ngCart = ngCart;
 
-                console.log("In controller1");
+        console.log("In controller1");
 
-                /*
-
-        (function initController() {
-
-            console.log("In self calling");
-            var pizza  =  {
-            "pizzaId" : 1,
-            "pizzaName" : "chicken tikka",
-            "pizzaDesc" : "pizza desc",
-            "price" : 21.44,
-            "size" : 1,
-            "customized" : 1,
-            "base" : {
-                "baseId" : 1,
-                "baseName" : "thin",
-                "price" : 21.4
-            }
-        };
-
-
-        $(`<div class="col-xs-6 col-sm-3">
-        <h4>`+ pizza.pizzaName + `</h4>
-        <p> `+   pizza.pizzaDesc +` <br> Base: `+ pizza.base.baseName +` </P>
-        <p> $`+ pizza.price +`</p>
-        <ngcart-addtocart id="`+ pizza.pizzaId +`" name="`+ pizza.pizzaName + `" price="`+ pizza.price +`" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
-    </div>`).appendTo('#standard_pizzas');        
-        })();
-
-
-
-
-
-
-*/
-
-
-
-    }])/*
-    .controller('CartController',['$scope', 'ngCart', function($scope, ngCart) {
-        $scope.ngCart = ngCart;
-
-        console.log("In CartController");
-
-    }])*/
+               
+    }])
     .directive('ngcartAddtocart', ['ngCart', function(ngCart){
         return {
             restrict : 'E',
@@ -684,21 +651,23 @@ angular.module('ngCart.fulfilment', [])
 
  }])
 
-.service('ngCart.fulfilment.http', ['$http', 'ngCart', function($http, ngCart){
+.service('ngCart.fulfilment.http', ['$http', 'ngCart','$location', function($http, ngCart, $location){
 
 		console.log(ngCart.toObject());
 
         // document.write(JSON.stringify(ngCart.toObject()));
 
         
-        this.checkout = function(settings){	
-            return $http.post(settings.url,
-                {data:ngCart.toObject()})
+        this.checkout = function(){	
+            $http.post("http://localhost:8080/spring-angularjs-java-webapp-template-project/api/bill",
+            		//{data:JSON.stringify(ngCart.toObject())})
+            		JSON.stringify(ngCart.toObject()) ).then(function(response){
+            	    	console.log(response);
+            	    	
+            	  		
+            	  		$location.path('/');
+            	  		window.alert("Bill gerated sucessfully");
+            	    });
+            
         }
- }])
-
-
-.service('ngCart.fulfilment.paypal', ['$http', 'ngCart', function($http, ngCart){
-
-
-}]);
+ }]);

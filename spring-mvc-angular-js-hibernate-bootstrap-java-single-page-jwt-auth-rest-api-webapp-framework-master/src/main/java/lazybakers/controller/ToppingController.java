@@ -1,5 +1,6 @@
 package lazybakers.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,7 +18,6 @@ import lazybakers.model.entity.Topping;
 import lazybakers.service.ToppingService;
 
 @Controller
-//@RequestMapping("topping")
 public class ToppingController {
 	private static Logger LOG = LoggerFactory.getLogger(ToppingController.class);
 	@Autowired
@@ -33,6 +33,15 @@ public class ToppingController {
 	@ResponseBody
 	public Topping gettopping(@PathVariable int tId){
         return toppingService.getToppingById(tId);
+    }
+	
+	@RequestMapping(value = "/topping/update", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public void updatetopping(@RequestBody List<Integer> tId){
+		Iterator<Integer> it = tId.iterator();
+		while(it.hasNext()) {
+			toppingService.updateTopping(it.next());
+		}
     }
 	
 	@RequestMapping(value = "/topping", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")

@@ -53,7 +53,7 @@ public class PizzaRepositoryImpl implements PizzaRepository {
 		List<Pizza> list = null;
 		try {
 			tx = session.beginTransaction();
-			list =  session.createCriteria(Pizza.class).list();
+			list =  session.createQuery("from pizza where customized != 1").list();
 			tx.commit();
 		} catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();

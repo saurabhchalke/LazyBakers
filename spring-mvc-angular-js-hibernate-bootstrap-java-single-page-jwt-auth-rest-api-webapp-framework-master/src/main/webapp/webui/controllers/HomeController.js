@@ -1,23 +1,22 @@
 angular.module('App')
-    .controller('HomeController',  ['$anchorScroll', '$scope', '$location',	 HomeController]);
+    .controller('HomeController',  ['$anchorScroll', '$scope', '$location', '$rootScope', 'AuthService', 'FlashMessage', HomeController]);
 
-function HomeController($anchorScroll, $scope, $location) {
-//    var home = this;
-//    home.currentUser = null;
+function HomeController($anchorScroll, $scope, $location, $rootScope, AuthService, FlashMessage) {
     
     $scope.gotoAnchor = function(x) {
     	
     	
     	console.log("In go to anchor " + x);
-//        var newHash =  x;
-//        if ($location.hash() !== newHash) {
-          // set the $location.hash to `newHash` and
-          // $anchorScroll will automatically scroll to it
           $location.hash(x);
-//        } else {
-          // call $anchorScroll() explicitly,
-          // since $location.hash hasn't changed
+
           $anchorScroll();
-//        }
     }
+    
+    
+    
+    $scope.logout = function(){
+    	console.log('received the logout event for user: '+$scope.currentUser.email);
+        AuthService.clearCredentials();
+        $location.path('/');
+    };
 };

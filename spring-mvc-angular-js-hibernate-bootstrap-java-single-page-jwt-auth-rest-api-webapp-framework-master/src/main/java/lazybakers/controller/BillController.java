@@ -72,7 +72,7 @@ public class BillController {
 			boolean uncustomized = false;
 			if(tempPizzaOrderDTO.getId() == null)
 				uncustomized = true;
-//			Base base = baseService.getBaseById(tempPizzaOrderDTO.getData().getBaseId());
+
 			Base base = baseService.getBaseById(1);
 			int pizzaId = pizzaService.createPizza(tempPizzaOrderDTO.getName(), "None", tempPizzaOrderDTO.getPrice(), tempPizzaOrderDTO.getData().getSize(), uncustomized, base);
 			pizzaOrderSerivce.createPizzaOrder(tempPizzaOrderDTO.getPrice(), tempPizzaOrderDTO.getQuantity(), tempPizzaOrderDTO.getTotal(), billService.getBillById(billId), pizzaService.getPizzaById(pizzaId));

@@ -14,39 +14,34 @@ function AdminController($scope, $rootScope,filterFilter, $location, $http, Back
 	
 	
 	console.log("This is executed before loading the view");
-    //AuthService.clearCredentials();
-	/*
-	MenuService.getToppings(function(data){
-		
-		$scope.data = data;
-		
-	});*/
+    
 	
 	
 
-    
+	var topping;
     $http.get(BackendCfg.url + '/api/topping').then(function(response) {
-        //document.write(JSON.stringify(response));
     	
-    	$scope.toppings = response.data;
-    	console.log(response.data);
+    	topping = response.data;
+    	$.map( topping, function( json_object ) {
+            json_object["selected"] = false;
+    	});
+    	$scope.toppings = topping;
+    	$scope.toppings2 = topping;
     });
 	
-	var topping = $scope.toppings;
 	
-	$.map( topping, function( json_object ) {
-        json_object["selected"] = false;
-  });
+	
+	
 
       
 
 
-  $scope.toppings = topping;
-
-  function getIdsOfSelectedToppings() {
+  
+  
+  function getIdsOfSelectedToppings(data) {
       var ids = [];
-      var data = $scope.toppings;
-      for (var key in $scope.toppings) {
+   
+      for (var key in data) {
           if (data.hasOwnProperty(key)) {
         	  if(data[key].selected == true){
         		  ids.push(data[key].toppingId);
@@ -59,41 +54,37 @@ function AdminController($scope, $rootScope,filterFilter, $location, $http, Back
 	
   $scope.updateTopping = function(){
 	  	
-	  	var selectedToppings = getIdsOfSelectedToppings();
+	  	var selectedToppings = getIdsOfSelectedToppings($scope.toppings);
 	  	console.log(selectedToppings);
 	  	
-	  	$http.post(BackendCfg.url + '/api/topping').then(function(response) {
-	    
-	    	
-	    	$scope.toppings = response.data;
-	    	console.log(response.data);
+	  	$http.post(BackendCfg.url + '/api/topping/update', selectedToppings).then(function(response){
+	    	//console.log(response);
+	  		
+	  		window.alert("The toppingshave been updated!!");
 	    });
 	  	
 	  	
   }
   
+ 
   
-
   
+  var base;
   $http.get(BackendCfg.url + '/api/base').then(function(response) {
-      
-  	
-  	$scope.base = response.data;
-  	
-  	console.log(response.data);
+    
+  	base = response.data;
+  	$.map( base, function( json_object ) {
+        if(json_object["baseName"] == "Regular")
+            json_object["selected"] = true;
+        else  
+          json_object["selected"] = false;
+    });
+  	$scope.base = base;
+  	console.log(base);
   });
   
-  var base = $scope.base;
-
-  $.map( base, function( json_object ) {
-      if(json_object["baseName"] == "Regular")
-          json_object["selected"] = true;
-      else  
-        json_object["selected"] = false;
-  });
   
-  $scope.base = base;
-
+  
   $scope.setChoiceForBase = function (baseID) {
        
           angular.forEach($scope.base, function(base){
@@ -104,9 +95,38 @@ function AdminController($scope, $rootScope,filterFilter, $location, $http, Back
              
            });
   };
+  
+  
 
-
-	
+  $scope.pizzaName = "LB Special";
+  $scope.pizzaValue = 199;
+  $scope.addPizza = function(){
+	  var baseId = 1;
+	  angular.forEach($scope.base, function(_base){
+	      if(_base.selected == true){
+	          baseId = _base.baseId;
+	      }
+	   });
+	  
+	  var data = {
+			  pizzaName:$scope.pizzaName, 
+			  pizzaDesc:"A fabulous Pizza for all", 
+			  customized: 0, 
+			  price: $scope.pizzaValue, 
+			  toppings: getIdsOfSelectedToppings($scope.toppings),
+			  baseId: baseId, 
+			  size: "Medium"
+	  }
+	  
+	  	
+	  $http.post(BackendCfg.url + '/api/pizza', data).then(function(response){
+	    	console.log(response);
+	    	
+	  		window.alert("Pizza Added Successfully");
+	    });
+	  	
+  }
+  
 })();
 
 

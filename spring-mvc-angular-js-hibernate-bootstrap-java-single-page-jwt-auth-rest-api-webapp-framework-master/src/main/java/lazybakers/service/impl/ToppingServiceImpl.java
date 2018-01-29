@@ -23,8 +23,8 @@ public class ToppingServiceImpl implements ToppingService {
 	}
 
 	@Override
-	public void updateTopping(int toppindId, String toppingname, float price, int stock, boolean vegetarian) {
-		toppingRepository.updateTopping(toppindId, toppingname, price, stock, vegetarian);
+	public void updateTopping(int toppindId) {
+		toppingRepository.updateTopping(toppindId);
 		
 	}
 

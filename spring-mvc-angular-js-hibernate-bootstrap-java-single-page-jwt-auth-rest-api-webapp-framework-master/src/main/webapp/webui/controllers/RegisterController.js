@@ -15,7 +15,7 @@ function RegisterController($location, $scope, $rootScope, AuthService, FlashMes
             if (response.code==200) {
                 AuthService.createJWTToken(response.result.user, response.result.token);
                 AuthService.setCredentials();
-                $location.path('/app');
+                $location.path('/home');
             } else {
                 rc.error = response.result;
                 rc.details = response.details;

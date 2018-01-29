@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome User</title>
+    
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="res/css/staticcss/User.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-animate.js"></script>
+    <script data-require="angular.js@1.0.x" src="http://code.angularjs.org/1.0.7/angular.min.js" data-semver="1.0.7"></script>
+    <script src="res/js/staticjs/User.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet"></link>
+  </head>
+
+  <body>
+    <h2>Welcome {{currentUser.displayName}}  {{ currentUser}} 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="button button3" ng-click="logout()">Logout</button>
+	</h2>
+	
+	
+	<br><br>
+    <div class="infoDiv">
+		Name:
+		
+		
+		
+		<div>
+		  <span href="#" contenteditable="true">{{ currentUser.displayName || 'empty' }}</span>
+		</div>
+				
+		
+		
+		Phone Number: 
+		
+		<div>
+		  <span ng-click="editing = true">{{ currentUser.mobile || 'empty' }}</span>
+		</div>
+				
+		eMail:
+		<div>
+		  <span ng-click="editing = true" contenteditable="true">{{ currentUser.email || 'empty' }}</span>
+		</div>
+				
+		
+		
+		Address:
+		<div>
+		  <span contenteditable="true">{{ currentUser.address || 'empty' }}</span>
+		</div>
+				
+		
+		<br><br>
+		
+		<button class="button button1" ng-onclick="saveChanges()">Save Changes</button>
+	</div>
+	<hr/>
+	<h4>Current Order status:</h4>
+	<div class="row shop-tracking-status infoDiv">
+    
+    <div class="col-md-12">
+        <div class="well">
+    
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputOrderTrackingID" class="col-sm-2 control-label">Order id</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputOrderTrackingID" value="" placeholder="# put your order id here">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" id="shopGetOrderStatusID" class="btn btn-success">Get status</button>
+                    </div>
+                </div>
+            </div>
+    
+            <h4>Your order status:</h4>
+            <span class="prefix">Date created:</span>
+            <span class="label label-success">12.12.2013</span><br><br>
+			<span class="prefix">Last update:</span>
+            <span class="label label-success">12.15.2013</span><br><br>
+            You can find out latest status of your order with the following link: <br>
+            <a href="//tracking/link/goes/here">//tracking/link/goes/here</a>
+            </ul>
+
+            <div class="order-status">
+
+                <div class="order-status-timeline">
+					<div class="order-status-timeline-completion c2"></div>
+                </div>
+
+                <div class="image-order-status image-order-status-new active img-circle">
+                    <span class="status">Order Received</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-active active img-circle">
+                    <span class="status">Order Accepted</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-intransit active img-circle">
+                    <span class="status">Cooking in progress</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-delivered active img-circle">
+                    <span class="status">Out for delivery</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="image-order-status image-order-status-completed active img-circle">
+                    <span class="status">Delivered</span>
+                    <div class="icon"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+	<hr/>
+	Previous bills:
+  </body>
+
+</html>

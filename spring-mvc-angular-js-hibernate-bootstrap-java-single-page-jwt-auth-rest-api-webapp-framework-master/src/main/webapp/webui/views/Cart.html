@@ -31,7 +31,7 @@
     }
   </style>
 
-  <title>Angular: Empty Fiddle</title>
+  <title>CART</title>
 </head>
 
 <body>
@@ -43,9 +43,15 @@
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
+        
+        
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="" data-target="#collapse1">Our standard Pizzas</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-href="#/home">HOME</a> 
         </h4>
+        
       </div>
 <div id="collapse1" class="panel-collapse collapse in">
  	<div class="panel-body">
@@ -54,24 +60,27 @@
 <h3>Add to Cart</h3>
 	<div id="standard_pizzas" class="row">
     <div class="col-xs-6 col-sm-3">
-        <h4>My Item #1</h4>
-		<p> This is the best as per your aukaat </p>
-        <p> $10.99</p>
+        <h4>Regular Bite</h4>
+		<p>The regular one, for your hungry tummy </p>
+        <p>149</p>
         <ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
     </div>
     <div class="col-xs-6 col-sm-3">
-        <h4>My Item #2</h4>
-        <p> $15.29</p>
+        <h4>Cheesy Fantasy</h4>
+        <p> The dream of cheesy dreamers</p>
+        <p> 299</p>
         <ngcart-addtocart id="item2" name="My Item #2" price="15.29" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
     </div>
     <div class="col-xs-6 col-sm-3">
-        <h4>My Item #3</h4>
-        <p> $25.75</p>
+        <h4>FamJam</h4>
+        <p> For a family treat</p>
+        <p> 399</p>
         <ngcart-addtocart id="item3" name="My Item #3" price="25.75" quantity="3" quantity-max="10">Add to Cart</ngcart-addtocart>
     </div>
     <div class="col-xs-6 col-sm-3">
-        <h4>My Item #4</h4>
-        <p> $29.25</p>
+        <h4>Lazy Boy</h4>
+        <p> This is a special one from our lazy kitchen</p>
+        <p> 499</p>
         <ngcart-addtocart id="item4" name="My Item #4" price="29.25" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>        
     </div>
 </div>

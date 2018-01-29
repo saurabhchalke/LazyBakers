@@ -4,38 +4,29 @@ import org.hibernate.criterion.Order;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 
-/**
- * BaseService implementation for basic access to service
- * methods of CRUD operations on entity
- *
- */
-public abstract class BaseJPAServiceImpl<T extends Entity, ID extends Serializable> implements BaseService<T, ID> {
-    protected BaseJPARepository<T, ID> baseJpaRepository;
+public abstract class BaseJPAServiceImpl<T extends Entity, I extends Serializable> implements BaseService<T, I> {
+    protected BaseJPARepository<T, I> baseJpaRepository; 
     protected Class<T> entityClass;
 
-    public T insert(T object) throws Exception {
+    public T insert(T object) {
         return baseJpaRepository.insert(object);
     }
 
-    public T update(T object) throws Exception {
+    public T update(T object) {
         return baseJpaRepository.update(object);
     }
 
-    public void delete(T object) throws Exception {
+    public void delete(T object) {
         baseJpaRepository.delete(object);
     }
 
-    public T findById(ID id) throws Exception {
-        T result = baseJpaRepository.findById(id);
-
-        if (result != null)
-            return result;
-        else
-            throw new Exception("Not Found");
+    public T findById(I id) {
+        return baseJpaRepository.findById(id);
     }
 
-    public Collection<T> findAllByPage(int pageNum, int countPerPage, Order order) throws Exception {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Collection<T> findAllByPage(int pageNum, int countPerPage, Order order) {
+        return Collections.emptyList();  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

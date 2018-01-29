@@ -10,7 +10,7 @@ import java.util.Collection;
  *
  * Created by Y.Kamesh on 8/2/2015.
  */
-public interface BaseJPARepository<T extends Entity, ID extends Serializable> {
+public interface BaseJPARepository<T extends Entity, I extends Serializable> {
     /**
      * Method to setup the class type of the Entity for which
      * the DAO works
@@ -58,7 +58,7 @@ public interface BaseJPARepository<T extends Entity, ID extends Serializable> {
      * @param id
      *         The id by which the row has to be found
      */
-    public T findById(ID id);
+    public T findById(I id);
 
     /**
      * Method to find a collection of database entities by pages

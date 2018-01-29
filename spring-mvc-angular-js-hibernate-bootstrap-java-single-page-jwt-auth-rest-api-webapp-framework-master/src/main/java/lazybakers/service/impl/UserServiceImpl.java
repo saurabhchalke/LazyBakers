@@ -60,26 +60,17 @@ public class UserServiceImpl extends BaseJPAServiceImpl<User, Long> implements U
 
     @Override
     public boolean isEmailExists(String email) {
+    	boolean returnValue = false;
         if (userRepository.findByEmail(email) != null) {
-            return true;
-        } else
-            return false;
+            returnValue = true;
+        }
+        return returnValue;
     }
 
 
     @Override
     public User findByEmail(String email){
-        User user = userRepository.findByEmail(email);
-
-        if(user != null) {
-            return user;
-        } else {
-            try {
-				throw new Exception("User not found for email: " + email);
-			} catch (Exception e) {
-				return null;
-			}
-        }
+        return userRepository.findByEmail(email);
     }
 
 

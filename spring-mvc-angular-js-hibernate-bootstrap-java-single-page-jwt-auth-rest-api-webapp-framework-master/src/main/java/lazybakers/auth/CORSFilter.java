@@ -26,11 +26,14 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Max-Age", "3600");
         if (request.getMethod() != "OPTIONS") {
             chain.doFilter(req, res);
-        } else {
         }
     }
 
-    public void init(FilterConfig filterConfig) {}
+    public void init(FilterConfig filterConfig) {
+    	//initialization
+    }
 
-    public void destroy() {}
+    public void destroy() {
+    	//destroy
+    }
 }

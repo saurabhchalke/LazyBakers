@@ -3,7 +3,6 @@ package lazybakers.model.repository.impl;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -49,9 +48,7 @@ public class ToppingRepositoryImpl implements ToppingRepository {
 		Transaction tx = null;
 		try {
 	         tx = session.beginTransaction();
-	         log.info("update topping set stock = stock + 100 where topping_id = " + toppingId);
-	         Query query = session.createQuery("update topping set stock = 200 where topping_id = :toppingId");
-	         log.info("dsd " + query.executeUpdate());
+	         session.createQuery("update topping set stock = stock + 100 where topping_id = :toppingId");
 	         tx.commit();
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();

@@ -3,8 +3,6 @@ package lazybakers.controller;
 import java.util.Iterator;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +22,6 @@ import lazybakers.service.ToppingService;
 @Controller
 public class PizzaController {
 	
-	private static Logger LOG = LoggerFactory.getLogger(PizzaController.class);
 	@Autowired
 	PizzaService pizzaService;
 	@Autowired
@@ -40,7 +37,6 @@ public class PizzaController {
 		return pizzaService.getAllPizza();
 	}
 	
-
 	@RequestMapping(value = "/pizza", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	@ResponseBody
 	public Integer addpizza(@RequestBody PizzaDTO pizzaDTO) {

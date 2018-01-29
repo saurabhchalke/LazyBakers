@@ -1,10 +1,7 @@
 package lazybakers.controller;
 
-import java.util.Iterator;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +16,11 @@ import lazybakers.service.ToppingService;
 
 @Controller
 public class ToppingController {
-	private static Logger LOG = LoggerFactory.getLogger(ToppingController.class);
+	
+	public ToppingController() {
+		// TODO Auto-generated constructor stu
+	}
+	
 	@Autowired
 	ToppingService toppingService;
 	
@@ -35,13 +36,10 @@ public class ToppingController {
         return toppingService.getToppingById(tId);
     }
 	
-	@RequestMapping(value = "/topping/update", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/topping/{tId}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
-	public void updatetopping(@RequestBody List<Integer> tId){
-		Iterator<Integer> it = tId.iterator();
-		while(it.hasNext()) {
-			toppingService.updateTopping(it.next());
-		}
+	public void updatetopping(@PathVariable int tId){
+        toppingService.updateTopping(tId);
     }
 	
 	@RequestMapping(value = "/topping", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")

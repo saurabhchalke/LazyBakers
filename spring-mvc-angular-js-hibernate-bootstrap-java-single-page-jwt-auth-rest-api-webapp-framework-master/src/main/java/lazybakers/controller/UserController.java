@@ -20,17 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 import java.util.HashMap;
 
+/**
+ * Referred: https://github.com/mpetersen/aes-example, http://niels.nu/blog/2015/json-web-tokens.html
+ */
 @Controller
 @RequestMapping("user")
 public class UserController extends BaseController {
@@ -46,7 +43,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse authenticate(@RequestBody UserDTO userDTO,
-                                                  HttpServletRequest request, HttpServletResponse response) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, AuthenticationFailedException {
+                                                  HttpServletRequest request, HttpServletResponse response) throws AuthenticationFailedException {
         Validate.isTrue(StringUtils.isNotBlank(userDTO.getEmail()), "Email is blank");
         String password = userDTO.getPassword();
         
@@ -81,7 +78,7 @@ public class UserController extends BaseController {
     
     @RequestMapping(value = "/register", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse register(@RequestBody UserDTO userDTO,
-                                              HttpServletRequest request) throws NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, InvalidKeySpecException {
+                                              HttpServletRequest request) {
         Validate.isTrue(StringUtils.isNotBlank(userDTO.getEmail()), "Email is blank");
         Validate.isTrue(StringUtils.isNotBlank(userDTO.getDisplayName()), "Display name is blank");
         String password = userDTO.getPassword();
@@ -124,19 +121,23 @@ public class UserController extends BaseController {
         return APIResponse.toOkResponse("success");
     }
 
-    private String base64(byte[] bytes) {
+    @SuppressWarnings("unused")
+	private String base64(byte[] bytes) {
         return Base64.encodeBase64String(bytes);
     }
 
-    private byte[] base64(String str) {
+    @SuppressWarnings("unused")
+	private byte[] base64(String str) {
         return Base64.decodeBase64(str);
-    }
+    } 
 
-    private String hex(byte[] bytes) {
+    @SuppressWarnings("unused")
+	private String hex(byte[] bytes) {
         return Hex.encodeHexString(bytes);
     }
 
-    private byte[] hex(String str) {
+    @SuppressWarnings("unused")
+	private byte[] hex(String str) {
         try {
             return Hex.decodeHex(str.toCharArray());
         }

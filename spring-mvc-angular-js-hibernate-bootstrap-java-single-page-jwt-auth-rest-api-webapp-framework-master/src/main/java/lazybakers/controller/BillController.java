@@ -3,8 +3,6 @@ package lazybakers.controller;
 import java.util.Date;
 import java.util.Iterator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +17,6 @@ import lazybakers.model.entity.Address;
 import lazybakers.model.entity.Base;
 import lazybakers.model.entity.Bill;
 import lazybakers.model.entity.Coupon;
-import lazybakers.model.entity.Topping;
 import lazybakers.model.entity.User;
 import lazybakers.service.AddressService;
 import lazybakers.service.BaseService;
@@ -34,7 +31,6 @@ import lazybakers.service.UserService;
 @Controller
 public class BillController {
 	
-	private static Logger log = LoggerFactory.getLogger(ToppingController.class);
 	@Autowired
 	BaseService baseService;
 	@Autowired
@@ -72,7 +68,6 @@ public class BillController {
 			boolean uncustomized = false;
 			if(tempPizzaOrderDTO.getId() == null)
 				uncustomized = true;
-
 			Base base = baseService.getBaseById(1);
 			int pizzaId = pizzaService.createPizza(tempPizzaOrderDTO.getName(), "None", tempPizzaOrderDTO.getPrice(), tempPizzaOrderDTO.getData().getSize(), uncustomized, base);
 			pizzaOrderSerivce.createPizzaOrder(tempPizzaOrderDTO.getPrice(), tempPizzaOrderDTO.getQuantity(), tempPizzaOrderDTO.getTotal(), billService.getBillById(billId), pizzaService.getPizzaById(pizzaId));

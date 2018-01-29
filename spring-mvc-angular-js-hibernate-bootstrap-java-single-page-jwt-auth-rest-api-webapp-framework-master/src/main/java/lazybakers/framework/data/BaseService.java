@@ -11,7 +11,7 @@ import java.util.Collection;
  *
  * @author : Y Kamesh Rao
  */
-public interface BaseService<T extends Entity, ID extends Serializable> {
+public interface BaseService<T extends Entity, I extends Serializable> {
     /**
      * Method to setup the service with basic
      * required data. Called after Spring initialization.
@@ -24,7 +24,7 @@ public interface BaseService<T extends Entity, ID extends Serializable> {
      * @param object
      *         The newly object
      */
-    public T insert(T object) throws Exception;
+    public T insert(T object);
 
     /**
      * Service to update an existing object
@@ -32,7 +32,7 @@ public interface BaseService<T extends Entity, ID extends Serializable> {
      * @param object
      *         The existing object
      */
-    public T update(T object) throws Exception;
+    public T update(T object);
 
     /**
      * Service to delete an existing object
@@ -40,7 +40,7 @@ public interface BaseService<T extends Entity, ID extends Serializable> {
      * @param object
      *         The existing object
      */
-    public void delete(T object) throws Exception;
+    public void delete(T object);
 
     /**
      * Service to find an existing object by its given id and query name
@@ -48,7 +48,7 @@ public interface BaseService<T extends Entity, ID extends Serializable> {
      * @param id
      *         Id of the resource
      */
-    public T findById(ID id) throws Exception;
+    public T findById(I id);
 
 
     /**
@@ -62,5 +62,5 @@ public interface BaseService<T extends Entity, ID extends Serializable> {
      *
      * @throws Exception
      */
-    public Collection<T> findAllByPage(int pageNum, int countPerPage, Order order) throws Exception;
+    public Collection<T> findAllByPage(int pageNum, int countPerPage, Order order);
 }

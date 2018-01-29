@@ -53,7 +53,7 @@ public class PizzaOrderRepositoryImpl implements PizzaOrderRepository {
 		List<PizzaOrder> list = null;
 		try {
 			tx = session.beginTransaction();
-			list =  session.createQuery("from pizza_order where bill_bill_id = :billId").list();
+			list =  (List<PizzaOrder>) session.get(PizzaOrder.class, billId);
 	        tx.commit();
 		} catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();

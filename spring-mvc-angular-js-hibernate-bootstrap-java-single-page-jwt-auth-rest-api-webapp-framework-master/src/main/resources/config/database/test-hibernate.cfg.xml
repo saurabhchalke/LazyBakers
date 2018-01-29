@@ -39,17 +39,15 @@
 
         <!-- You will usually want to set this to true while debugging hibernate queries -->
         <property name="hibernate.show_sql">true</property>
-		<property name="hbm2ddl.auto">update</property>    
+		<property name="hbm2ddl.auto">create</property>    
         <property name = "hibernate.connection.url">
-         jdbc:mysql://localhost:3306/test
+         jdbc:mysql://localhost:3306/test2
 	      </property>
 	      
 	      <property name = "hibernate.connection.username">root</property>
 	      
 	      <property name = "hibernate.connection.password"></property>
-	      <property name = "hibernate.connection.driver_class">
-	         com.mysql.jdbc.Driver
-	      </property>
+	      <property name = "hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
  
         <!-- Map the app related object entity classes here -->
         <mapping class="lazybakers.model.entity.User" />

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.Collection;
 
-public abstract class BaseHibernateJPARepository<T extends Entity, ID extends Serializable> implements BaseJPARepository<T, ID> {
+public abstract class BaseHibernateJPARepository<T extends Entity, I extends Serializable> implements BaseJPARepository<T, I> {
     protected @Autowired
     SessionFactory sessionFactory;
     protected Class<T> clazz;
@@ -56,7 +56,7 @@ public abstract class BaseHibernateJPARepository<T extends Entity, ID extends Se
 
     @SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-    public T findById(ID id) {
+    public T findById(I id) {
         return (T) sessionFactory.getCurrentSession().get(clazz, id);
     }
 

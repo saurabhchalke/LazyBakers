@@ -8,10 +8,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * An MVC interceptor to collect metrics like processing time of a controller action handler
- *
- */
 public class WebAppMetricsInterceptor extends HandlerInterceptorAdapter {
     private static Logger LOG = LoggerFactory.getLogger(WebAppMetricsInterceptor.class);
     private long startTime = 0L;

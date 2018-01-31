@@ -67,7 +67,7 @@
 				<a ng-if="!currentUser" ng-href="#/register">New User? ||</a>  
 				
 				<a ng-if="currentUser" ng-href="#/user"> Hi {{ currentUser.displayName }} || </a>
-				<a href='javascript:;' ng-click='#/logout();' ng-if="currentUser">SIGN OUT</a>&nbsp;  
+				<a href='javascript:;' ng-click="app.logout()" ng-controller="AppController as app" ng-if="currentUser">SIGN OUT</a>&nbsp;  
 				
 				<a ng-href="#/orderPizza"><span class="glyphicon glyphicon-shopping-cart"></span></a>
         </div><!--/.navbar-collapse -->

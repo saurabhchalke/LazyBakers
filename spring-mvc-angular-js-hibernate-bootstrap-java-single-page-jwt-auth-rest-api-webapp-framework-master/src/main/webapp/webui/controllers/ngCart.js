@@ -660,11 +660,9 @@ angular.module('ngCart.fulfilment', [])
         
         this.checkout = function(){	
             $http.post("http://localhost:8080/spring-angularjs-java-webapp-template-project/api/bill",
-            		//{data:JSON.stringify(ngCart.toObject())})
             		JSON.stringify(ngCart.toObject()) ).then(function(response){
             	    	console.log(response);
             	    	
-            	  		
             	  		$location.path('/');
             	  		window.alert("Bill gerated sucessfully");
             	    });

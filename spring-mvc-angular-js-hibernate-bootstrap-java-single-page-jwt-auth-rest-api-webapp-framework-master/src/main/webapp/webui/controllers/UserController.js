@@ -1,8 +1,8 @@
 angular.module('App.Auth')
-.controller('UserController', ['$scope','filterFilter', '$cookieStore', '$rootScope', '$location','$http','BackendCfg', 'AuthService', UserController]);
+.controller('UserController', ['$scope', 'filterFilter', '$cookieStore', '$rootScope', '$location','$http','BackendCfg', 'AuthService', UserController]);
 
 
-function UserController( $scope, $rootScope, AuthService,$cookieStore ,filterFilter, $location, $http, BackendCfg) {
+function UserController( $scope, $rootScope,  AuthService,$cookieStore ,filterFilter, $location, $http, BackendCfg) {
 
 	(function initController() {
 		
@@ -15,6 +15,18 @@ function UserController( $scope, $rootScope, AuthService,$cookieStore ,filterFil
 		
 	})();
 	
+	
+	
+	$scope.logout = function() {
+		
+		console.log("In logout");
+		
+        $rootScope.$broadcast("CallLogoutMethod");
+    }
+	
+	
+	/*
+	
 	$scope.logout = function(){
     	console.log('received the logout event for user: ' + $scope.currentUser.email);
         
@@ -24,13 +36,13 @@ function UserController( $scope, $rootScope, AuthService,$cookieStore ,filterFil
     	
     	
         $location.path('/');
-    };
+    };*/
     
     
     $scope.saveChanges = function(){
     	console.log(currentUser.displayName);
     	console.log(currentUser.email);
     }
-	
-	
+    
+    	
 }
